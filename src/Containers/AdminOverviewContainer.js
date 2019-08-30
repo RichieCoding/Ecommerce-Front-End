@@ -1,30 +1,39 @@
 import React, { Component } from "react";
-import OrderContainer from './OrderContainer'
-import InventoryContainer from './InventoryContainer'
-import AdminMenu from '../Components/AdminMenu'
+import OrderContainer from "./OrderContainer";
+import InventoryContainer from "./InventoryContainer";
+import AdminMenu from "../Components/AdminMenu";
 
 class AdminOverviewContainer extends Component {
   state = {
-    title: "Orders",
+    renderClick: "Orders"
   };
 
-  handleClick = e => {
-    console.log(e.target)
+  handleClick = value => {
+    console.log(value);
     this.setState({
-      renderClick: e.target.id
-    })
-  }
+      renderClick: value
+    });
+  };
+
+  renderClickedComponent = () => {
+    switch (this.state.renderClick) {
+      case "Orders":
+        return <OrderContainer />;
+      case "Inventory":
+        return <InventoryContainer />;
+      default:
+        return <OrderContainer />;
+    }
+  };
 
   render() {
     return (
       <div className='admin-container'>
-
         <div className='admin-title'>
-          <h3>{this.state.title}</h3>
+          <h3>{this.state.renderClick}</h3>
         </div>
-
-        <AdminMenu />
-          <OrderContainer />
+        <AdminMenu handleClick={this.handleClick} />
+        {this.renderClickedComponent()}
       </div>
     );
   }
