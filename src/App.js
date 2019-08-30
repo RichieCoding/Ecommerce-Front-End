@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import "./App.css";
 import LoginPage from './Components/LoginPage'
 import ProfilePage from './Components/ProfilePage'
+import SignUpPage from './Components/SignUpPage'
 import AdminOverviewContainer from "./Containers/AdminOverviewContainer";
+import ShopHomePage from './Containers/ShopHomePage'
+import { Switch, Route } from 'react-router-dom'
 
 class App extends Component {
-
   state = {
     page: 'login'
   }
@@ -18,21 +20,19 @@ class App extends Component {
 
   componentDidMount() {
     if (localStorage.token) {
-      this.redirect('home')
+      // console.log(this.props)
     }
   }
 
   render() {
-    switch(this.state.page) {
-      case 'login':
-        return <LoginPage redirect={this.redirect}/>
-      case 'signup':
-        return <ProfilePage />
-      case 'home':
-        return <ProfilePage />
-      case 'admin':
-        return <AdminOverviewContainer />
-    }
+    return (
+      <Switch>
+        <Route exact path="/" component={ShopHomePage} />
+        <Route path='/login' component={LoginPage} />
+        <Route path='/profile' component={ProfilePage} />
+        <Route path='/signup' component={SignUpPage} />
+      </Switch>
+    )
   }
 
 }

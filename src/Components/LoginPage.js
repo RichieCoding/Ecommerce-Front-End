@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SignUpPage from './SignUpPage'
+import { Link } from 'react-router-dom' 
 
 class LoginPage extends Component {
   state = {
@@ -27,7 +27,7 @@ class LoginPage extends Component {
     .then(parsedResponse => {
       console.log(parsedResponse)
       localStorage.setItem('token', parsedResponse.token )
-      this.props.redirect('home')
+      this.props.history.push('/profile')
     })
   }
 
@@ -49,7 +49,7 @@ class LoginPage extends Component {
           />
           <input type='submit' value='Log In' />
         </form><br></br>
-        <SignUpPage />
+        <Link to="/signup">Signup</Link>
       </div>
     );
   }
