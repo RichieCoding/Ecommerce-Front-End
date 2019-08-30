@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import Manager from './Manager'
+import AdminOverviewContainer from '../Containers/AdminOverviewContainer'
 
-class HomePage extends Component {
+class ProfilePage extends Component {
 
   state = {
     username: ''
@@ -22,9 +24,10 @@ class HomePage extends Component {
     return (
       <div>
         <h1>Profile Page you're {this.state.username}</h1>
+        <AdminOverviewContainer />
       </div>
     )
   }
 }
 
-export default HomePage
+export default ProfilePage

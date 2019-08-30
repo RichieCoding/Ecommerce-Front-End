@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import LoginPage from './Components/LoginPage'
-import HomePage from './Components/HomePage'
+import ProfilePage from './Components/ProfilePage'
+import AdminOverviewContainer from "./Containers/AdminOverviewContainer";
 
 class App extends Component {
 
@@ -26,11 +27,14 @@ class App extends Component {
       case 'login':
         return <LoginPage redirect={this.redirect}/>
       case 'signup':
-        return <HomePage />
+        return <ProfilePage />
       case 'home':
-        return <HomePage />
+        return <ProfilePage />
+      case 'admin':
+        return <AdminOverviewContainer />
     }
   }
+
 }
 
 export default App;

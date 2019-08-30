@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import SignUpPage from './SignUpPage'
 
 class LoginPage extends Component {
   state = {
@@ -47,7 +48,8 @@ class LoginPage extends Component {
             name='password'
           />
           <input type='submit' value='Log In' />
-        </form>
+        </form><br></br>
+        <SignUpPage />
       </div>
     );
   }
