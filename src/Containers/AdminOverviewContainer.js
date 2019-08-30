@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import OrderContainer from './OrderContainer'
+import InventoryContainer from './InventoryContainer'
+import AdminMenu from '../Components/AdminMenu'
 
 class AdminOverviewContainer extends Component {
   state = {
-    title: "Orders"
+    title: "Orders",
   };
+
+  handleClick = e => {
+    console.log(e.target)
+    this.setState({
+      renderClick: e.target.id
+    })
+  }
 
   render() {
     return (
@@ -14,23 +23,8 @@ class AdminOverviewContainer extends Component {
           <h3>{this.state.title}</h3>
         </div>
 
-        <div className='admin-menu'>
-          <div className='admin-menu-button'>
-            <h3>Orders</h3>
-          </div>
-          <div className='admin-menu-button'>
-            <h3>Inventory</h3>
-          </div>
-          <div className='admin-menu-button'>
-            <h3>Customers</h3>
-          </div>
-          <div className='admin-menu-button'>
-            <h3>Settings</h3>
-          </div>
-        </div>
-
-        <OrderContainer />
-
+        <AdminMenu />
+          <OrderContainer />
       </div>
     );
   }
