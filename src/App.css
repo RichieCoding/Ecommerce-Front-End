@@ -10,7 +10,7 @@
 
 .admin-container {
   height: 97vh;
-  background: lightblue;
+  background: rgb(255, 255, 255);
   display: grid;
   grid-template-columns: 1fr 5fr ;
   grid-template-rows: 1fr 5fr;
@@ -35,7 +35,6 @@
 .admin-menu {
   grid-area: menu;
   border: 1px black solid;
-  background: blue;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -55,22 +54,34 @@
   cursor: pointer;
 }
 
+
 /************************* 
     Order Container
 *************************/
 
 .render-menu-container {
   grid-area: container;
-  padding: 0 30px;
+  margin: 0 3em;
   display: grid;
   grid-template-rows: 1fr 3fr;
 }
 
 .admin-info-bar {
-  background: blue;
+  background: rgb(231, 231, 233);
 }
 
 .admin-order-component {
   margin: 30px 0 30px;
-  background: blue;
+  background: rgb(231, 231, 233);
 }
+
+/************************* 
+    Inventory Container
+*************************/
+
+.inventory-container {
+  margin: 0 3em;
+  background: rgb(231, 231, 233);
+}
+
+
