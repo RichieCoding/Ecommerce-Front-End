@@ -34,7 +34,7 @@
 
 .admin-menu {
   grid-area: menu;
-  border: 1px black solid;
+  /* border: 1px black solid; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -43,8 +43,8 @@
 .admin-menu-button {
   display: flex;
   height: 100%;
-  background: rgb(252, 252, 252);
-  border-bottom: 1px solid black;
+  background: rgb(235, 234, 234);
+  border-bottom: 1px solid rgb(173, 172, 172);
   justify-content: center;
   align-items: center;
 }
@@ -67,6 +67,15 @@
 }
 
 .admin-info-bar {
+  display: grid;
+  /* background: rgb(231, 231, 233); */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+}
+
+.admin-info-box {
+  display: flex;
+  justify-content: center;
   background: rgb(231, 231, 233);
 }
 
@@ -83,5 +92,9 @@
   margin: 0 3em;
   background: rgb(231, 231, 233);
 }
+
+
+
+
 
 
