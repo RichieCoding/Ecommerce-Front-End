@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import OrderContainer from "./OrderContainer";
 import InventoryContainer from "./InventoryContainer";
 import AdminMenu from "../Components/AdminMenu";
+import Header from '../Components/Header';
+import AllUsersContainer from './AllUsersContainer'
 
 class AdminOverviewContainer extends Component {
   state = {
@@ -21,6 +23,8 @@ class AdminOverviewContainer extends Component {
         return <OrderContainer />;
       case "Inventory":
         return <InventoryContainer />;
+      case "Customers":
+        return <AllUsersContainer />
       default:
         return <OrderContainer />;
     }
@@ -28,13 +32,16 @@ class AdminOverviewContainer extends Component {
 
   render() {
     return (
+      <>
       <div className='admin-container'>
+      <Header />
         <div className='admin-title'>
           <h3>{this.state.renderClick}</h3>
         </div>
         <AdminMenu handleClick={this.handleClick} />
         {this.renderClickedComponent()}
       </div>
+      </>
     );
   }
 }
