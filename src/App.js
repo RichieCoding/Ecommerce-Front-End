@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import "./App.css";
 import LoginPage from './Components/LoginPage'
 import ProfilePage from './Components/ProfilePage'
-import SignUpPage from './Components/SignUpPage'
+import SignUpPage from './Containers/SignUpContainer'
 import AdminOverviewContainer from "./Containers/AdminOverviewContainer";
 import ShopHomePage from './Containers/ShopHomePage'
 import { Switch, Route } from 'react-router-dom'
 
 class App extends Component {
   state = {
-    page: 'login'
+    page: 'login',
+    products: []
   }
 
   redirect = (page) => {
@@ -19,9 +20,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (localStorage.token) {
-      // console.log(this.props)
-    }
+    fetch('http://localhost:3000/products')
+    .then(resp => resp.json())
+    .then(parsedData => {this.setState({
+      products: parsedData
+    })})
   }
 
   render() {
