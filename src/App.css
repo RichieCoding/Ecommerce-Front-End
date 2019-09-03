@@ -5,6 +5,26 @@
 }
 
 /************************* 
+    Header Component
+*************************/
+nav {
+  grid-area: nav;
+  display: flex;
+  background: rgb(27, 27, 27);
+}
+
+nav h1 {
+  color: white;
+}
+
+nav ul li {
+  display: inline-block;
+  color: white;
+}
+
+
+
+/************************* 
     Admin Container
 *************************/
 
@@ -13,8 +33,9 @@
   background: rgb(255, 255, 255);
   display: grid;
   grid-template-columns: 1fr 5fr ;
-  grid-template-rows: 1fr 5fr;
+  grid-template-rows: 50px 1fr 5fr;
   grid-template-areas: 
+    "nav nav nav nav"
     "title title title title"
     "menu container container container "
     "menu container container container"
@@ -26,6 +47,7 @@
   display: block;
   font-size: 2em;
   text-align: center;
+  padding-top: 1.2em;
 }
 
 /************************* 
@@ -89,8 +111,49 @@
 *************************/
 
 .inventory-container {
-  margin: 0 3em;
+  margin: 0 3em 30px;
   background: rgb(231, 231, 233);
+}
+
+
+/************************* 
+   SingleUser Component
+*************************/
+.single-user-header {
+  /* position: fixed; */
+  color: white;
+  background: rgba(0, 0, 0, 0.80);
+}
+
+.users-container {
+  margin: 0 3em 30px;
+  background: rgb(231, 231, 233);
+  overflow: scroll;
+}
+
+.single-user {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2fr;
+  padding: 25px;
+}
+
+
+.single-user:nth-child(even) {
+  background: rgb(248, 248, 248);
+}
+
+.single-user button {
+  background: rgb(51, 51, 51);
+  color: white;
+  margin-left: auto;
+  min-width: 8em;
+  font-size: 1em;
+  padding: 5px;
+  outline: none;
+}
+
+.single-user button:hover {
+  background: rgb(0, 0, 0);
 }
 
 

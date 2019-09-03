@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 
-class SignUpPage extends Component {
+class UserForms extends Component {
   state = {
     firstName: "",
     lastName: "",
+    phoneNumber: "",
     email: "",
     address: "",
     city: "",
@@ -20,15 +21,10 @@ class SignUpPage extends Component {
     });
   };
 
-  handleSubmit = e => {
-    e.preventDefault()
-    fetch()
-  }
-
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={e => this.props.handleSubmit(e, this.state, this.props.userId)}>
           <input
             type='text'
             onChange={this.handleChange}
@@ -49,6 +45,13 @@ class SignUpPage extends Component {
             placeholder='Email'
             name='email'
             value={this.state.email}
+          />
+          <input
+            type='text'
+            onChange={this.handleChange}
+            placeholder='Phone Number'
+            name='phoneNumber'
+            value={this.state.phoneNumber}
           />
           <input
             type='text'
@@ -99,4 +102,4 @@ class SignUpPage extends Component {
   }
 }
 
-export default SignUpPage;
+export default UserForms;
