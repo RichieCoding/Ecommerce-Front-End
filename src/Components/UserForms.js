@@ -22,6 +22,11 @@ class UserForms extends Component {
   };
 
   render() {
+    const {
+      first_name,
+      last_name,
+      address
+    } = this.props.userInfo
     return (
       <div>
         <form onSubmit={e => this.props.handleSubmit(e, this.state, this.props.userId)}>
@@ -95,7 +100,7 @@ class UserForms extends Component {
             name='password'
             value={this.state.password}
           />
-          <input type="submit"/>
+          <input type="submit" />
         </form>
       </div>
     );
