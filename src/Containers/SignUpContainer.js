@@ -19,7 +19,6 @@ class SignUpContainer extends Component {
     })
       .then(resp => resp.json())
       .then(this.props.history.push("/login"));
-    // console.log(...userInfo)
   };
 
   render() {
