@@ -115,6 +115,14 @@ nav ul li {
   background: rgb(231, 231, 233);
 }
 
+.inventory-header {
+  color: white;
+  background: rgba(0, 0, 0, 0.80);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  padding: 25px;
+}
+
 
 /************************* 
    SingleUser Component
@@ -131,7 +139,7 @@ nav ul li {
   overflow: scroll;
 }
 
-.single-user {
+.single-user-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 2fr;
   padding: 25px;
@@ -156,6 +164,15 @@ nav ul li {
   background: rgb(0, 0, 0);
 }
 
+/************************* 
+ Single Product Component
+*************************/
+
+.single-product {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  padding: 25px;
+}
 
 
 
