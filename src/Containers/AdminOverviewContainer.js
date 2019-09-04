@@ -22,7 +22,7 @@ class AdminOverviewContainer extends Component {
       case "Orders":
         return <OrderContainer />;
       case "Inventory":
-        return <InventoryContainer />;
+        return <InventoryContainer products={this.props.products} />;
       case "Customers":
         return <AllUsersContainer />
       default:
