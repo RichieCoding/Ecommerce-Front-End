@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import UserForms from './UserForms'
+import UserForms from "./UserForms";
 
 class SingleUser extends Component {
   state = {
@@ -9,7 +9,7 @@ class SingleUser extends Component {
   render() {
     const { first_name, username, email, id } = this.props.users;
     return (
-      <div className='single-user'>
+      <div className='single-user single-user-grid'>
         <h3>{first_name}</h3>
         <h3>{username}</h3>
         <h3>{email}</h3>
@@ -17,16 +17,21 @@ class SingleUser extends Component {
           onClick={e => {
             this.setState({
               clicked: !this.state.clicked
-            })
+            });
           }}
         >
           Edit
         </button>
-        {this.state.clicked ? <UserForms handleSubmit={this.props.handleSubmit} userId={id} /> : null}
+        {this.state.clicked ? (
+          <UserForms
+            handleSubmit={this.props.handleSubmit}
+            userInfo={this.props.users}
+            userId={id}
+          />
+        ) : null}
       </div>
     );
   }
 }
 
 export default SingleUser;
-
