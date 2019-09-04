@@ -37,7 +37,7 @@ class ProfilePage extends Component {
     const {admin} = this.state.currentUser
 
     if (admin && localStorage.token) {
-      return <AdminOverviewContainer currentUser = 'currentUser' />;
+      return <AdminOverviewContainer products={this.props.products} currentUser = 'currentUser' />;
     } else if (localStorage.token) {
       return <Profile userInfo={this.state.currentUser} />
     } else {
