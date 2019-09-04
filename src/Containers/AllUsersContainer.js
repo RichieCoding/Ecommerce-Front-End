@@ -60,7 +60,7 @@ class AllUsersContainer extends Component {
     });
     return (
       <div className='users-container'>
-        <div className='single-user single-user-header'>
+        <div className='single-user-grid single-user-header'>
           <h3>First Name:</h3>
           <h3>Username:</h3>
           <h3>Email:</h3>
