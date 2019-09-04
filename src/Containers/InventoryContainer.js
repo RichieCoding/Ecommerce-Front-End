@@ -1,14 +1,23 @@
 import React, { Component } from 'react'
+import SingleProduct from '../Components/SingleProduct'
 
 class InventoryContainer extends Component {
-  state = {
-    
-  }
+  
   
   render() {
+    const renderProducts = this.props.products.map(product => {
+      return <SingleProduct product={product} />
+    })
     return (
       <div className="inventory-container">
-        <h1>hello</h1>
+        <div className='inventory-header'>
+          <h3>Name:</h3>
+          <h3>Color:</h3>
+          <h3>Size:</h3>
+          <h3>Quantity:</h3>
+          <h3>Price:</h3>
+        </div>
+        <div>{renderProducts}</div>
       </div>
     )
   }
