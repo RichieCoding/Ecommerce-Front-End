@@ -4,6 +4,7 @@ import InventoryContainer from "./InventoryContainer";
 import AdminMenu from "../Components/AdminMenu";
 import Header from "../Components/Header";
 import AllUsersContainer from "./AllUsersContainer";
+import SettingsContainer from './SettingsContainer';
 
 class AdminOverviewContainer extends Component {
   state = {
@@ -30,6 +31,8 @@ class AdminOverviewContainer extends Component {
         );
       case "Customers":
         return <AllUsersContainer />;
+      case "Settings":
+        return <SettingsContainer />;
       default:
         return <OrderContainer />;
     }
