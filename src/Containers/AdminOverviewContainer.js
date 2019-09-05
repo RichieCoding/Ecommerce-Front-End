@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import OrderContainer from "./OrderContainer";
 import InventoryContainer from "./InventoryContainer";
 import AdminMenu from "../Components/AdminMenu";
-import Header from '../Components/Header';
-import AllUsersContainer from './AllUsersContainer'
+import Header from "../Components/Header";
+import AllUsersContainer from "./AllUsersContainer";
 
 class AdminOverviewContainer extends Component {
   state = {
@@ -22,9 +22,14 @@ class AdminOverviewContainer extends Component {
       case "Orders":
         return <OrderContainer />;
       case "Inventory":
-        return <InventoryContainer products={this.props.products} />;
+        return (
+          <InventoryContainer
+            updateQuantity={this.props.updateQuantity}
+            products={this.props.products}
+          />
+        );
       case "Customers":
-        return <AllUsersContainer />
+        return <AllUsersContainer />;
       default:
         return <OrderContainer />;
     }
@@ -33,14 +38,14 @@ class AdminOverviewContainer extends Component {
   render() {
     return (
       <>
-      <div className='admin-container'>
-      <Header />
-        <div className='admin-title'>
-          <h3>{this.state.renderClick}</h3>
+        <div className='admin-container'>
+          <Header />
+          <div className='admin-title'>
+            <h3>{this.state.renderClick}</h3>
+          </div>
+          <AdminMenu handleClick={this.handleClick} />
+          {this.renderClickedComponent()}
         </div>
-        <AdminMenu handleClick={this.handleClick} />
-        {this.renderClickedComponent()}
-      </div>
       </>
     );
   }
