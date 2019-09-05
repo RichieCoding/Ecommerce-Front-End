@@ -4,6 +4,7 @@ import { faArrowAltCircleUp } from '@fortawesome/free-solid-svg-icons';
 import { faArrowAltCircleDown } from '@fortawesome/free-solid-svg-icons';
 
 
+
 export class SingleProduct extends Component {
 
   handleUpClick = () => {
@@ -42,8 +43,14 @@ export class SingleProduct extends Component {
     })
   }
 
-  mouseDown = () => {
-    console.log('hi')
+  handleDelete = () => {
+    console.log('delete')
+    fetch(`http://localhost:3000/products/${this.props.product.id}`, {
+      method: "DELETE"
+    })
+    .then(parsedData => {
+      this.props.updateQuantity(parsedData)
+    })
   }
 
   render() {
@@ -59,9 +66,13 @@ export class SingleProduct extends Component {
         <div style={{userSelect: "none"}}>
           <span><FontAwesomeIcon icon={faArrowAltCircleDown} onClick={this.handleDownClick}/></span>
           <h3 id='quantity' style={{ display: "inline-block" }}>{quantity}</h3>
-          <span><FontAwesomeIcon icon={faArrowAltCircleUp} onMouseDown={this.mouseDown} onClick={this.handleUpClick}/></span>
+          <span><FontAwesomeIcon icon={faArrowAltCircleUp} onClick={this.handleUpClick}/></span>
         </div>
         <h3>{`$${price}`}</h3>
+        <div>
+          <button id="product-edit-btn">Edit</button>
+          <button onClick={this.handleDelete} id="product-remove-btn">X</button>
+        </div>
       </div>
     );
   }
