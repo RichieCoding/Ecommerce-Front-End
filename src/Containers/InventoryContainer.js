@@ -38,7 +38,7 @@ class InventoryContainer extends Component {
         </div>
         <div>{renderProducts}</div>
       </div>
-        {this.state.addBtnClicked ? <ProductFromContainer handleAddClick={this.handleAddClick} /> : null }
+        {this.state.addBtnClicked ? <ProductFromContainer updateQuantity={this.props.updateQuantity} handleAddClick={this.handleAddClick} /> : null }
       </>
     );
   }

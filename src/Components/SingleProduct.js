@@ -43,6 +43,16 @@ export class SingleProduct extends Component {
     })
   }
 
+  handleDelete = () => {
+    console.log('delete')
+    fetch(`http://localhost:3000/products/${this.props.product.id}`, {
+      method: "DELETE"
+    })
+    .then(parsedData => {
+      this.props.updateQuantity(parsedData)
+    })
+  }
+
   render() {
     const { name, color, size, quantity, price, imageUrl } = this.props.product;
     return (
@@ -61,7 +71,7 @@ export class SingleProduct extends Component {
         <h3>{`$${price}`}</h3>
         <div>
           <button id="product-edit-btn">Edit</button>
-          <button id="product-remove-btn">X</button>
+          <button onClick={this.handleDelete} id="product-remove-btn">X</button>
         </div>
       </div>
     );
