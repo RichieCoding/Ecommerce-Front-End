@@ -4,6 +4,19 @@
   box-sizing: border-box;
 }
 
+button {
+  outline: none;
+}
+
+input {
+  outline: none;
+}
+
+textarea {
+  outline: none;
+  resize: none;
+}
+
 /************************* 
     Header Component
 *************************/
@@ -119,9 +132,15 @@ nav ul li {
   color: white;
   background: rgba(0, 0, 0, 0.80);
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr ;
   padding: 25px;
   user-select: none;
+}
+
+#add-product-btn {
+  height: 40px;
+  width: 130px;
+  font-size: 1em;
 }
 
 
@@ -165,13 +184,26 @@ nav ul li {
   background: rgb(0, 0, 0);
 }
 
+#product-edit-btn {
+  /* margin-bottom: 5px; */
+}
+
+#product-edit-btn:hover {
+  background: rgb(29, 161, 62);
+}
+
+#product-remove-btn:hover {
+  background: rgb(187, 41, 41);
+}
+
+
 /************************* 
  Single Product Component
 *************************/
 
 .single-product {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
   padding: 25px;
 }
 
@@ -183,6 +215,74 @@ nav ul li {
 #quantity {
   padding: 0 10px;
 }
+
+/************************* 
+  Product From Container
+*************************/
+
+.product-form-container {
+  background: rgba(255, 255, 255);
+  border: .7px solid black;
+  border-radius: 3.5px;
+  width: 40%;
+  position: fixed;
+  top: 30%;
+  left: 30%;
+  width: 50%;
+  height: 50%;
+  z-index: 999;
+  overflow: scroll;
+}
+
+.product-form-container button {
+  height: 5em;
+  width: 5em;
+}
+
+.product-form-container button:hover {
+  background: rgb(51, 51, 51);
+  color: white;
+}
+
+.product-form-container header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+   background: rgb(228, 228, 228);
+}
+
+.product-form-wrapper {
+  padding: 2em;
+}
+
+.product-form-container input,
+.product-form-container textarea {
+  width: 100%;
+  height: 3em;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid black;
+  margin-bottom: 2em;
+  font-size: 1.2em;
+}
+
+#product-form-submit-btn {
+  border: 1px solid rgb(42, 228, 160);
+  background: rgb(42, 228, 160);
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+#product-form-submit-btn:hover {
+  background: rgb(74, 236, 177);
+}
+
+
+
 
 
 
