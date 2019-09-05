@@ -119,8 +119,9 @@ nav ul li {
   color: white;
   background: rgba(0, 0, 0, 0.80);
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
   padding: 25px;
+  user-select: none;
 }
 
 
@@ -170,8 +171,17 @@ nav ul li {
 
 .single-product {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
   padding: 25px;
+}
+
+.single-product svg:hover {
+  color: rgb(15, 197, 24);
+  transform: scale(1.4);
+}
+
+#quantity {
+  padding: 0 10px;
 }
 
 
