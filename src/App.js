@@ -20,14 +20,26 @@ class App extends Component {
   };
 
   componentDidMount() {
+    this.fetchProducts()
+  }
+
+  // Fetch all products
+  fetchProducts = () => {
     fetch("http://localhost:3000/products")
       .then(resp => resp.json())
       .then(parsedData => {
+        // const sortedProducts = parsedData.sort(function(a,b){
+        //   return a.varientID.localeCompare(b.varientID)
+        // })
         this.setState({
           products: parsedData
         });
       });
   }
+
+  updateQuantity = data => {
+    this.fetchProducts()
+  };
 
   render() {
     return (
@@ -37,7 +49,11 @@ class App extends Component {
         <Route
           path='/profile'
           render={routerProps => (
-            <ProfilePage {...routerProps} products={this.state.products} />
+            <ProfilePage
+              {...routerProps}
+              products={this.state.products}
+              updateQuantity={this.updateQuantity}
+            />
           )}
         />
         <Route path='/signup' component={SignUpPage} />
