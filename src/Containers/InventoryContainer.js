@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import SingleProduct from "../Components/SingleProduct";
-import ProductFromContainer from "../Containers/ProductFormContainer";
+import ProductFormContainer from "../Containers/ProductFormContainer";
 import ConfirmDelete from "../Components/ConfirmDelete";
 
 class InventoryContainer extends Component {
   state = {
     addBtnClicked: false,
-    deleteBtnClicked: false
+    deleteBtnClicked: false,
+    editBtnClicked: false
   };
 
+  // Function that handles the modal popup for the add product button  
   handleAddClick = () => {
     if (this.state.deleteBtnClicked) {
       this.setState({
@@ -22,6 +24,7 @@ class InventoryContainer extends Component {
     }
   };
 
+  // Function that handles the modal popup for the delete button  
   handleDeleteClick = () => {
     if (this.state.addBtnClicked) {
       this.setState({
@@ -35,6 +38,7 @@ class InventoryContainer extends Component {
     }
   };
 
+  // Grabs UserID by passing this function to SingleProduct Component
   getUserId = id => {
     this.handleDeleteClick();
     this.setState({
@@ -42,9 +46,8 @@ class InventoryContainer extends Component {
     });
   };
 
+  // Deletes a product
   deleteProduct = () => {
-    console.log("yay it works");
-    console.log("delete");
     fetch(`http://localhost:3000/products/${this.state.deleteProductId}`, {
       method: "DELETE"
     }).then(parsedData => {
@@ -83,21 +86,25 @@ class InventoryContainer extends Component {
           <div>{renderProducts}</div>
         </div>
 
-        {/* Renders Add Product Form  */}
+        {/* Renders Add Product Form Modal */}
         {this.state.addBtnClicked ? (
-          <ProductFromContainer
+          <ProductFormContainer
             updateQuantity={this.props.updateQuantity}
             handleAddClick={this.handleAddClick}
           />
         ) : null}
 
-        {/* Renders Delete Confirm */}
+        {/* Renders Delete Confirm Modal */}
         {this.state.deleteBtnClicked ? (
           <ConfirmDelete
             handleDeleteClick={this.handleDeleteClick}
             updateQuantity={this.props.updateQuantity}
             deleteProduct={this.deleteProduct}
           />
+        ) : null}
+        {/* Renders Edit Product Form Modal */}
+        {this.state.editBtnClicked ? (
+          <ProductFormContainer />
         ) : null}
       </>
     );

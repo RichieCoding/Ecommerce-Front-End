@@ -60,8 +60,11 @@ export class SingleProduct extends Component {
             <span><FontAwesomeIcon icon={faArrowAltCircleUp} onClick={this.handleUpClick}/></span>
          </div>
           <h3>{`$${price}`}</h3>
+          {/* Edit/Delete Buttons */}
           <div>
+            {/* Edit Button */}
             <button id='product-edit-btn'>Edit</button>
+            {/* Delete Button */}
             <button
               onClick={() => {this.props.getUserId(this.props.product.id)}}
               id='product-remove-btn'
