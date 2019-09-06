@@ -7,14 +7,16 @@ class InventoryContainer extends Component {
   state = {
     addBtnClicked: false,
     deleteBtnClicked: false,
-    editBtnClicked: false
+    editBtnClicked: false,
+    modalOpen: false
   };
 
-  // Function that handles the modal popup for the add product button  
+  // Function that handles the modal popup for the add product button
   handleAddClick = () => {
-    if (this.state.deleteBtnClicked) {
+    if (this.state.deleteBtnClicked || this.state.editBtnClicked) {
       this.setState({
         deleteBtnClicked: false,
+        editBtnClicked: false,
         addBtnClicked: !this.state.addBtnClicked
       });
     } else {
@@ -24,16 +26,34 @@ class InventoryContainer extends Component {
     }
   };
 
-  // Function that handles the modal popup for the delete button  
+  // Function that handles the modal popup for the delete button
   handleDeleteClick = () => {
-    if (this.state.addBtnClicked) {
+    if (this.state.addBtnClicked || this.state.editBtnClicked) {
       this.setState({
         addBtnClicked: false,
+        editBtnClicked: false,
         deleteBtnClicked: !this.state.deleteBtnClicked
       });
     } else {
       this.setState({
         deleteBtnClicked: !this.state.deleteBtnClicked
+      });
+    }
+  };
+
+  handleEditClick = (product) => {
+    console.log(product)
+    if (this.state.addBtnClicked || this.state.deleteBtnClicked) {
+      this.setState({
+        addBtnClicked: false,
+        deleteBtnClicked: false,
+        editBtnClicked: !this.state.editBtnClicked,
+        editProduct: product
+      }) 
+    } else {
+      this.setState({
+        editBtnClicked: !this.state.editBtnClicked,
+        editProduct: product
       });
     }
   };
@@ -66,6 +86,7 @@ class InventoryContainer extends Component {
           product={product}
           deleteState={this.state.deleteBtnClicked}
           getUserId={this.getUserId}
+          handleEditClick={this.handleEditClick}
         />
       );
     });
@@ -89,6 +110,7 @@ class InventoryContainer extends Component {
         {/* Renders Add Product Form Modal */}
         {this.state.addBtnClicked ? (
           <ProductFormContainer
+            title={"Add a Product"}
             updateQuantity={this.props.updateQuantity}
             handleAddClick={this.handleAddClick}
           />
@@ -104,7 +126,12 @@ class InventoryContainer extends Component {
         ) : null}
         {/* Renders Edit Product Form Modal */}
         {this.state.editBtnClicked ? (
-          <ProductFormContainer />
+          <ProductFormContainer
+            title={"Edit a Product"}
+            handleAddClick={this.handleEditClick}
+            updateQuantity={this.props.updateQuantity}
+            product={this.state.editProduct}
+          />
         ) : null}
       </>
     );
