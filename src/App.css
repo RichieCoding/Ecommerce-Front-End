@@ -144,6 +144,10 @@ nav ul li {
   font-size: 1em;
 }
 
+#add-product-btn:hover {
+  transform: scale(1.04);
+}
+
 
 /************************* 
    SingleUser Component
@@ -186,7 +190,7 @@ nav ul li {
 }
 
 #product-edit-btn {
-  /* margin-bottom: 5px; */
+  margin-bottom: 5px;
 }
 
 #product-edit-btn:hover {
@@ -280,6 +284,72 @@ nav ul li {
 
 #product-form-submit-btn:hover {
   background: rgb(74, 236, 177);
+}
+
+.confirm-delete {
+  background: rgba(255, 255, 255);
+  border: .7px solid black;
+  border-radius: 3.5px;
+  position: fixed;
+  top: 40%;
+  left: 35%;
+  width: 40%;
+  height: 40%;
+  z-index: 999;
+  overflow: scroll;
+}
+
+
+
+.confirm-delete header {
+  /* background: rgb(226, 225, 225); */
+  height: 40%;
+  text-align: center;
+  padding: 30px 0 0;
+  color: rgb(255, 217, 0);
+}
+
+.confirm-delete-main {
+  font-size: 1.6em;
+  text-align: center;
+  margin-bottom: 3em;
+}
+
+.confirm-delete-footer {
+  display: flex;
+  justify-content: space-around;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.confirm-delete-footer button {
+  height: 3em;
+  border-radius: 10px;
+  font-size: 1em;
+  color: white;
+  cursor: pointer;
+  max-width: 195px;
+}
+
+#confirm-delete-btn {
+  width: 12em;
+  background: rgb(42, 228, 160);
+}
+
+#confirm-delete-btn:hover {
+  background: rgb(80, 231, 176);
+  transform: scale(1.05);
+}
+
+#confirm-cancel-btn {
+  width: 10em;
+  background: rgb(241, 52, 52);
+  
+}
+
+#confirm-cancel-btn:hover {
+  background: rgb(248, 67, 67);
+  transform: scale(1.05);
 }
 
 
