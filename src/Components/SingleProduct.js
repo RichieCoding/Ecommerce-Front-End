@@ -5,6 +5,7 @@ import { faArrowAltCircleDown } from "@fortawesome/free-solid-svg-icons";
 import ConfirmDelete from "../Components/ConfirmDelete";
 
 export class SingleProduct extends Component {
+
   handleUpClick = () => {
     fetch(`http://localhost:3000/products/${this.props.product.id}`, {
       method: "PATCH",
@@ -63,7 +64,7 @@ export class SingleProduct extends Component {
           {/* Edit/Delete Buttons */}
           <div>
             {/* Edit Button */}
-            <button id='product-edit-btn'>Edit</button>
+            <button onClick={() => {this.props.handleEditClick(this.props.product)}} id='product-edit-btn'>Edit</button>
             {/* Delete Button */}
             <button
               onClick={() => {this.props.getUserId(this.props.product.id)}}
