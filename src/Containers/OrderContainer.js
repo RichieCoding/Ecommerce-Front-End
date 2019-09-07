@@ -1,22 +1,39 @@
 import React, { Component } from 'react'
+import AdminInfoBox from '../Components/admin-info-box/AdminInfoBox'
+import AdminSingleOrder from '../Components/admin-single-order/AdminSingleOrder'
 
 class OrderContainer extends Component {
+  state = {
+    orders: []
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/orders', {
+      headers: {
+        Authorization: localStorage.token
+      }
+    })
+    .then(resp => resp.json())
+    .then(parsedData => {this.setState({
+      orders: parsedData
+    })})
+  }
+
   render() {
+    const renderOrders = this.state.orders.map(order => {
+      return <AdminSingleOrder key={order.id} orderId={order.id} createdAt={order.created_at} />
+    })
+    const numberOfSales = this.state.orders.length
+    console.log(numberOfSales)
     return (
       <div className="render-menu-container">
         <div className='admin-info-bar'>
-          <div className='admin-info-box'>
-            <h3>Total Sales</h3>
-          </div>
-          <div className='admin-info-box'>
-            <h3>Total Earnings</h3>
-          </div>
-          <div className='admin-info-box'>
-            <h3>Top Customer</h3>
-          </div>
+          <AdminInfoBox title={"Total Sales"} info={numberOfSales} />
+          <AdminInfoBox title={"Total Earnings"} />
+          <AdminInfoBox title={"Top Customer"} />
         </div>
         <div className='admin-order-component'>
-          <h3>Hello</h3>
+          {renderOrders}
         </div>
       </div>
     )
