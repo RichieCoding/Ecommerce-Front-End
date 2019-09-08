@@ -143,6 +143,7 @@ nav ul li {
 }
 
 
+
 /************************* 
    SingleUser Component
 *************************/
@@ -169,7 +170,7 @@ nav ul li {
   background: rgb(248, 248, 248);
 }
 
-.single-user button {
+#single-user-edit-btn {
   background: rgb(51, 51, 51);
   color: white;
   margin-left: auto;
@@ -213,6 +214,14 @@ nav ul li {
 
 #quantity {
   padding: 0 10px;
+}
+
+.single-product-btn {
+  font-size: 1em;
+  height: 2em;
+  width: 9em;
+  background: rgb(48, 48, 48);
+  color: white;
 }
 
 /************************* 
