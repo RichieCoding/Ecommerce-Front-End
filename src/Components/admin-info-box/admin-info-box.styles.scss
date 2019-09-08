@@ -8,8 +8,26 @@
     font-size: 1.5em;
   }
 
-  h2 {
-    font-size: 6.5em;
-    color: rgb(255, 217, 0);
+  .info {
+    padding: 1em;
+    h2 {
+      font-size: 4.5em;
+    }
   }
+
+  .price {
+    padding: 1em;
+    h2 {
+      font-size: 3.8em;
+    }
+  }
+
+  .customer {
+    padding: 1em;
+    h2 {
+      font-size: 4em;
+    }
+  }
+
+ 
 }
