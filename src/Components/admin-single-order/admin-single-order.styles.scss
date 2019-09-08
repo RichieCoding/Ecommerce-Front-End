@@ -1,7 +1,26 @@
 .admin-single-order {
   display: flex;
+  padding: 25px;
+  justify-content: space-between;
+  align-items: center;
 
   h3 {
     margin-left: 10px;
+  }
+
+  &:nth-child(even) {
+    background: rgb(248, 248, 248);
+  }
+
+  button {
+    font-size: 1.2em;
+    height: 2.2em;
+    width: 8em;
+    color: white;
+    background: rgb(42, 228, 160);
+  }
+
+  button:hover {
+    background: rgb(80, 231, 176);
   }
 }
