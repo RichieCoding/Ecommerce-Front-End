@@ -4,8 +4,13 @@
   justify-content: space-between;
   align-items: center;
 
+  .order-date{
+    padding: 5px;
+  }
+
   h3 {
-    margin-left: 10px;
+    font-size: 1.1em;
+    margin-right: 10px;
   }
 
   &:nth-child(even) {
