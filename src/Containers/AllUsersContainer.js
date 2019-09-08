@@ -27,26 +27,7 @@ class AllUsersContainer extends Component {
       });
   };
 
-  handleSubmit = (e, userInfo, id) => {
-    e.preventDefault();
-    fetch(`http://localhost:3000/users/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        first_name: userInfo.firstName,
-        last_name: userInfo.lastName,
-        phone_number: userInfo.phoneNumber,
-        ...userInfo
-      })
-    })
-      .then(resp => resp.json())
-      .then(parsedInfo => {
-        this.fetchAllUsers();
-      });
-  };
+  
 
   render() {
     const allUsers = this.state.allUsers.map(users => {
@@ -54,7 +35,7 @@ class AllUsersContainer extends Component {
         <SingleUser
           key={users.id}
           users={users}
-          handleSubmit={this.handleSubmit}
+          fetchAllUsers={this.fetchAllUsers}
         />
       );
     });
