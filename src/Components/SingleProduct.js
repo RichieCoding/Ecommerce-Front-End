@@ -64,9 +64,10 @@ export class SingleProduct extends Component {
           {/* Edit/Delete Buttons */}
           <div>
             {/* Edit Button */}
-            <button onClick={() => {this.props.handleEditClick(this.props.product)}} id='product-edit-btn'>Edit</button>
+            <button className='single-product-btn' onClick={() => {this.props.handleEditClick(this.props.product)}} id='product-edit-btn'>Edit</button>
             {/* Delete Button */}
             <button
+              className='single-product-btn'
               onClick={() => {this.props.getUserId(this.props.product.id)}}
               id='product-remove-btn'
             >
