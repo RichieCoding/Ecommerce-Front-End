@@ -8,6 +8,7 @@ import SettingsContainer from './SettingsContainer';
 
 class AdminOverviewContainer extends Component {
   state = {
+    // Default Component is Order
     renderClick: "Orders"
   };
 
@@ -18,6 +19,7 @@ class AdminOverviewContainer extends Component {
     });
   };
 
+  // Switches between different components
   renderClickedComponent = () => {
     switch (this.state.renderClick) {
       case "Orders":
