@@ -2,9 +2,9 @@ import React, { Component } from "react";
 
 class UserForms extends Component {
   state = {
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
+    first_name: "",
+    last_name: "",
+    phone_number: "",
     email: "",
     address: "",
     city: "",
@@ -12,8 +12,16 @@ class UserForms extends Component {
     state: "",
     zipcode: "",
     username: "",
-    password: ""
+    // password: ""
   };
+
+  componentDidMount() {
+    if (this.props.userInfo !== undefined) {
+      this.setState({
+        ...this.props.userInfo
+      });
+    }
+  }
 
   handleChange = e => {
     this.setState({
@@ -22,28 +30,29 @@ class UserForms extends Component {
   };
 
   render() {
-    const {
-      first_name,
-      last_name,
-      address
-    } = this.props.userInfo
     return (
-      <div>
+      <div className='product-form-wrapper'>
         <form onSubmit={e => this.props.handleSubmit(e, this.state, this.props.userId)}>
+          <label htmlFor='first_name'>First Name:</label>
+          <br></br>
           <input
             type='text'
             onChange={this.handleChange}
             placeholder='First Name'
-            name='firstName'
-            value={this.state.firstName}
+            name='first_name'
+            value={this.state.first_name}
           />
+          <label htmlFor='last_name'>Last Name:</label>
+          <br></br>
           <input
             type='text'
             onChange={this.handleChange}
             placeholder='Last Name'
-            name='lastName'
-            value={this.state.lastName}
+            name='last_name'
+            value={this.state.last_name}
           />
+          <label htmlFor='email'>Email:</label>
+          <br></br>
           <input
             type='text'
             onChange={this.handleChange}
@@ -51,13 +60,17 @@ class UserForms extends Component {
             name='email'
             value={this.state.email}
           />
+          <label htmlFor='phone_number'>Phone Number:</label>
+          <br></br>
           <input
             type='text'
             onChange={this.handleChange}
             placeholder='Phone Number'
-            name='phoneNumber'
-            value={this.state.phoneNumber}
+            name='phone_number'
+            value={this.state.phone_number}
           />
+          <label htmlFor='address'>Address:</label>
+          <br></br>
           <input
             type='text'
             onChange={this.handleChange}
@@ -65,6 +78,8 @@ class UserForms extends Component {
             name='address'
             value={this.state.address}
           />
+          <label htmlFor='city'>City:</label>
+          <br></br>
           <input
             type='text'
             onChange={this.handleChange}
@@ -72,6 +87,8 @@ class UserForms extends Component {
             name='city'
             value={this.state.city}
           />
+          <label htmlFor='state'>State:</label>
+          <br></br>
           <input
             type='text'
             onChange={this.handleChange}
@@ -79,6 +96,8 @@ class UserForms extends Component {
             name='state'
             value={this.state.state}
           />
+          <label htmlFor='zipcode'>Zipcode:</label>
+          <br></br>
           <input
             type='text'
             onChange={this.handleChange}
@@ -86,6 +105,8 @@ class UserForms extends Component {
             name='zipcode'
             value={this.state.zipcode}
           />
+          <label htmlFor='username'>Username:</label>
+          <br></br>
           <input
             type='text'
             onChange={this.handleChange}
@@ -93,14 +114,14 @@ class UserForms extends Component {
             name='username'
             value={this.state.username}
           />
-          <input
+          {/* <input
             type='password'
             onChange={this.handleChange}
             placeholder='Password'
             name='password'
             value={this.state.password}
-          />
-          <input type="submit" />
+          /> */}
+          <input id='product-form-submit-btn' type="submit" />
         </form>
       </div>
     );
