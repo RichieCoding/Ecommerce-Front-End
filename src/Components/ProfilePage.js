@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Manager from "./Manager";
 import AdminOverviewContainer from "../Containers/AdminOverviewContainer";
 import { Link } from "react-router-dom";
 import Login from "./LoginPage";
