@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'Lato', sans-serif;
+}
+
 button {
   outline: none;
 }
@@ -17,23 +21,20 @@ textarea {
   resize: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 /************************* 
     Header Component
 *************************/
-nav {
-  grid-area: nav;
-  display: flex;
-  background: rgb(27, 27, 27);
-}
+
 
 nav h1 {
   color: white;
 }
 
-nav ul li {
-  display: inline-block;
-  color: white;
-}
+
 
 
 
