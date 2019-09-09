@@ -61,7 +61,7 @@ class ProfilePage extends Component {
     } else if (localStorage.token) {
       return <UserProfile userInfo={this.state.currentUser} usersOrders={this.state.usersOrders} />;
     } else {
-      return <Login />;
+      return <Login history={this.props.history} />;
     }
   }
 }

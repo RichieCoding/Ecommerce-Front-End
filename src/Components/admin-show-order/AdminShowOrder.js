@@ -61,7 +61,7 @@ class AdminShowOrder extends Component {
           {renderProducts}
           <hr></hr>
           <div className='total-price'>
-            <h4>{`Total Price: ${this.totalPrice()}`}</h4>
+            <h4>{`Total Price: $${this.totalPrice()}`}</h4>
           </div>
         </div>
       </div>
