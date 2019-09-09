@@ -5,7 +5,7 @@ import CustomerSingleOrderPreview from "../customer-single-order-preview/Custome
 import Header from '../header/Header'
 
 const UserProfile = props => {
-  const { first_name } = props.userInfo;
+  const { first_name, username } = props.userInfo;
   const renderOrders = props.usersOrders.map((order, index) => {
     return (
       <CustomerSingleOrderPreview
@@ -23,7 +23,7 @@ const UserProfile = props => {
     <div className='user-profile'>
       <div className='user-container'>
         <header className="welcome">
-          <h2>{`Welcome ${first_name}`}</h2>
+          <h2>{ first_name !== null ? `Welcome ${first_name}` : `Welcome ${username}`}</h2>
         </header>
         <main>
           {/* All Order Details */}
