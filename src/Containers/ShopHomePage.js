@@ -8,8 +8,7 @@ class ShopHomePage extends Component {
       <>
       <Header />
       <div>
-        <h1>HomePage SHOP</h1>
-        <Link to='/login'>Login</Link>
+        
       </div>
       </>
     )
