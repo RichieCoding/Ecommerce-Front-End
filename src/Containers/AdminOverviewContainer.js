@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import OrderContainer from "./OrderContainer";
 import InventoryContainer from "./InventoryContainer";
 import AdminMenu from "../Components/AdminMenu";
-import Header from "../Components/Header";
+import Header from "../Components/header/Header";
 import AllUsersContainer from "./AllUsersContainer";
 import SettingsContainer from './SettingsContainer';
 
@@ -44,7 +44,7 @@ class AdminOverviewContainer extends Component {
     return (
       <>
         <div className='admin-container'>
-          <Header />
+          <Header admin={true}/>
           <div className='admin-title'>
             <h3>{this.state.renderClick}</h3>
           </div>
