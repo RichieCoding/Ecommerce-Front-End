@@ -1,0 +1,26 @@
+nav {
+  grid-area: nav;
+  display: flex;
+  justify-content: space-between;
+  // background: rgba(37, 63, 119, 0.932);
+  padding: 20px;
+  border-bottom: 1px solid black;
+  width: 90%;
+  margin: 0 auto;
+
+  h1 {
+    color: black;
+    font-size: 1.5em;
+  }
+
+  ul li {
+    display: inline-block;
+    color: black;
+    margin-left: 20px;
+    font-size: 1.3em;
+
+    a:visited {
+      color: black;
+    }
+  }
+}

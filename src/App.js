@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import LoginPage from "./Components/LoginPage";
+import LoginPage from "./Containers/login-page/LoginPage";
 import ProfilePage from "./Components/ProfilePage";
 import SignUpPage from "./Containers/SignUpContainer";
 import AdminOverviewContainer from "./Containers/AdminOverviewContainer";

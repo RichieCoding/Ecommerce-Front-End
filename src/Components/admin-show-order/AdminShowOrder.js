@@ -28,7 +28,7 @@ class AdminShowOrder extends Component {
     const { id, date, time, user } = this.props.orderDetails;
     console.log(this.totalPrice())
     return (
-      <div className='admin-show-order'>
+      <div className={this.props.customer ? `customer-show-order` : 'admin-show-order'}>
         <header>
           <div className='order-date'>
             <h3>{`Order #${id}`}</h3>
@@ -43,11 +43,11 @@ class AdminShowOrder extends Component {
             <h3>{`Order Time: ${time}`}</h3>
           </div>
           <div className='user-info'>
-            <h3>{`${user.first_name} ${user.last_name}`}</h3>
-            <h3>{user.address}</h3>
-            <h3>{`${user.city}, ${user.state} ${user.zipcode}`}</h3>
-            <h3>{user.email}</h3>
-            <h3>{user.phone_number}</h3>
+            <p>{`${user.first_name} ${user.last_name}`}</p>
+            <p>{user.address}</p>
+            <p>{`${user.city}, ${user.state} ${user.zipcode}`}</p>
+            <p>{user.email}</p>
+            <p>{user.phone_number}</p>
           </div>
           <h2>Order Details</h2>
           <hr></hr>
