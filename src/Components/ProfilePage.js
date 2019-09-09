@@ -1,16 +1,31 @@
 import React, { Component } from "react";
 import AdminOverviewContainer from "../Containers/AdminOverviewContainer";
 import { Link } from "react-router-dom";
-import Login from "./LoginPage";
+import Login from "../Containers/login-page/LoginPage";
 import Profile from "./Profile";
+import UserProfile from './user-profile/UserProfile'
 
 class ProfilePage extends Component {
   state = {
-    currentUser: {}
+    currentUser: {},
+    usersOrders: []
   };
 
   componentDidMount() {
     this.checkForToken();
+    
+  }
+
+  fetchAllUserOrders = () => {
+    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, {
+      headers: {
+        Authorization: localStorage.token
+      }
+    })
+    .then(resp => resp.json())
+    .then(parsedOrder => this.setState({
+      usersOrders: parsedOrder.orders
+    }))
   }
 
   checkForToken = () => {
@@ -25,7 +40,8 @@ class ProfilePage extends Component {
           this.setState({
             currentUser: parsedData
           })
-        );
+        )
+        .then(() => this.fetchAllUserOrders())
     } else {
       this.props.history.push("/login");
     }
@@ -43,7 +59,7 @@ class ProfilePage extends Component {
         />
       );
     } else if (localStorage.token) {
-      return <Profile userInfo={this.state.currentUser} />;
+      return <UserProfile userInfo={this.state.currentUser} usersOrders={this.state.usersOrders} />;
     } else {
       return <Login />;
     }
