@@ -1,15 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+// import './header.styles.scss'
 
-export default function Header() {
-  return (
-    <nav>
-      <h1 id="title">Shoppie</h1>
+const Header = () => (
+  <nav>
+    <h1 id="title">Blips &amp; Chitz</h1>
       <ul>
-        <li>New Arrivals</li>
-        <li>About</li>
-        <li>Sale</li>
-        <li>Contact</li>
+        <li><Link to='/'>Home</Link></li>
       </ul>
-    </nav>
-  )
-}
+  </nav>
+)
+
+export default Header
