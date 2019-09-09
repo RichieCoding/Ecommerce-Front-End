@@ -1,0 +1,21 @@
+.customer-single-order-preview {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  
+
+  &:nth-child(even) {
+    background: rgb(241, 241, 241);
+  }
+
+  button {
+    font-size: 1em;
+    height: 2em;
+    width: 5em;
+  }
+
+   button:hover {
+     color: white;
+     background: rgb(51, 53, 75);
+   }
+}
