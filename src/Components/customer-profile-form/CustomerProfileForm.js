@@ -17,12 +17,22 @@ class CustomerProfileForm extends Component {
   };
 
   componentDidMount() {
-    if (this.props.userInfo !== undefined) {
+    fetch('http://localhost:3000/profile', {
+      headers: {
+        'Authorization': localStorage.token
+      }
+    })
+    .then(resp => resp.json())
+    .then(parsedData => {
       this.setState({
-        ...this.props.userInfo
+        ...parsedData
       })
+    })
+  }
 
-    } 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(this.state)
   }
 
   handleChange = (e) => {
@@ -34,10 +44,11 @@ class CustomerProfileForm extends Component {
 
   render() {
     const {first_name} = this.state
-    console.log(this.props.usersOrders)
+    // debugger
+    // console.log(this.props.usersOrders)
     return (
       <div className='customer-profile-form'>
-        <form onSubmit={e => this.props.handleSubmit(e, this.state, this.props.userId)}>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor='first_name'>First Name:</label>
           <br></br>
           <input
