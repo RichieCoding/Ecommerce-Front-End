@@ -3,7 +3,7 @@ import AdminOverviewContainer from "../Containers/AdminOverviewContainer";
 import { Link } from "react-router-dom";
 import Login from "../Containers/login-page/LoginPage";
 import Profile from "./Profile";
-import UserProfile from './user-profile/UserProfile'
+import UserProfile from "./user-profile/UserProfile";
 
 class ProfilePage extends Component {
   state = {
@@ -12,8 +12,10 @@ class ProfilePage extends Component {
   };
 
   componentDidMount() {
+    this.setState({
+      currentUser: {}
+    })
     this.checkForToken();
-    
   }
 
   fetchAllUserOrders = () => {
@@ -22,11 +24,13 @@ class ProfilePage extends Component {
         Authorization: localStorage.token
       }
     })
-    .then(resp => resp.json())
-    .then(parsedOrder => this.setState({
-      usersOrders: parsedOrder.orders
-    }))
-  }
+      .then(resp => resp.json())
+      .then(parsedOrder =>
+        this.setState({
+          usersOrders: parsedOrder.orders
+        })
+      );
+  };
 
   checkForToken = () => {
     if (localStorage.token) {
@@ -41,7 +45,7 @@ class ProfilePage extends Component {
             currentUser: parsedData
           })
         )
-        .then(() => this.fetchAllUserOrders())
+        .then(() => this.fetchAllUserOrders());
     } else {
       this.props.history.push("/login");
     }
@@ -49,7 +53,7 @@ class ProfilePage extends Component {
 
   render() {
     const { admin } = this.state.currentUser;
-
+    console.log(this.props.cart)
     if (admin && localStorage.token) {
       return (
         <AdminOverviewContainer
@@ -59,7 +63,14 @@ class ProfilePage extends Component {
         />
       );
     } else if (localStorage.token) {
-      return <UserProfile userInfo={this.state.currentUser} usersOrders={this.state.usersOrders} />;
+      return (
+        <UserProfile
+          userInfo={this.state.currentUser}
+          currentUser={this.props.currentUser}
+          usersOrders={this.state.usersOrders}
+          cart={this.props.cart}
+        />
+      );
     } else {
       return <Login history={this.props.history} />;
     }
