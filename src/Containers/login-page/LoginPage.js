@@ -28,16 +28,35 @@ class LoginPage extends Component {
     })
       .then(res => res.json())
       .then(parsedResponse => {
-        console.log(parsedResponse);
+        // console.log(parsedResponse);
         localStorage.setItem("token", parsedResponse.token);
+        this.props.handleCartFetch()
+        // this.getCurrentUser()
         this.props.history.push("/profile")
       });
   };
 
+  // getCurrentUser = () => {
+  //   fetch('http://localhost:3000/profile', {
+  //     headers: {
+  //       Authorization: localStorage.token
+  //     }
+  //   })
+  //   .then(resp => resp.json())
+  //   .then(parsedData => {
+  //     this.props.getCurrentUser(parsedData)
+  //     this.setState({
+  //       currentuser: parsedData
+  //     })
+  //   })
+  // }
+
+  
+
   render() {
     return (
       <>
-        <Header />
+        {/* <Header /> */}
         <div className='login-page'>
           {/* <div className='login-signup-container'> */}
 
