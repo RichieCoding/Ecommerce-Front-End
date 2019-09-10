@@ -6,7 +6,7 @@ class ShopHomePage extends Component {
   render() {
     return (
       <>
-      <Header />
+      {/* <Header cart={this.props.cart} /> */}
       <div>
         
       </div>
