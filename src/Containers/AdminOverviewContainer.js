@@ -42,16 +42,16 @@ class AdminOverviewContainer extends Component {
 
   render() {
     return (
-      <>
+ 
         <div className='admin-container'>
-          <Header admin={true}/>
+          {/* <Header admin={true}/> */}
           <div className='admin-title'>
             <h3>{this.state.renderClick}</h3>
           </div>
           <AdminMenu handleClick={this.handleClick} />
           {this.renderClickedComponent()}
         </div>
-      </>
+
     );
   }
 }
