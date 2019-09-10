@@ -1,0 +1,36 @@
+.cart-single-item {
+  display: flex;
+  padding: 15px 0;
+  border-top: 0.6px solid rgb(197, 197, 197);
+  width: 80%;
+  margin: 0 auto;
+
+  .product-info {
+    width: 100%;
+
+    .product-text {
+      width: 100%;
+      display: flex;
+      padding: 0 5px 8px 15px;
+      justify-content: space-between;
+
+    }
+
+    .product-name {
+      font-size: 1.1em;
+    }
+
+    .product-increment {
+      display: flex;
+      
+      p {
+        font-size: 1.1em;
+        margin: 0 5px;
+        user-select: none;
+      }
+    }
+
+  }
+
+  
+}
