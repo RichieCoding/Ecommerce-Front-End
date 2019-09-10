@@ -6,6 +6,7 @@
 
 body {
   font-family: 'Lato', sans-serif;
+  min-width: 1000px;
 }
 
 button {
@@ -33,9 +34,9 @@ a {
 nav h1 {
   color: white;
 }
-
-
-
+nav {
+  grid-area: nav;
+}
 
 
 /************************* 
@@ -43,14 +44,14 @@ nav h1 {
 *************************/
 
 .admin-container {
-  height: 100vh;
+  height: 93.6vh;
   background: rgb(255, 255, 255);
   display: grid;
   grid-template-columns: 1fr 5fr ;
-  grid-template-rows: 50px 1fr 5fr;
+  grid-template-rows: 1fr 5fr;
   grid-template-areas: 
-    "nav nav nav nav"
     "title title title title"
+    "menu container container container "
     "menu container container container "
     "menu container container container"
     "menu container container container"
