@@ -3,16 +3,29 @@ import { Link } from "react-router-dom";
 import "./header.styles.scss";
 
 class Header extends Component {
+  state = {
+    cartLength: ''
+  }
+
   handleClick = () => {
     localStorage.clear();
-    this.props.handleCartFetch()
+    this.props.handleCartFetch();
+    this.props.setCartToZero()
     // this.props.history.push('/')
   };
+
+  addTotal = () => {
+    let totalCart = 0;
+    if (this.props.cart !== undefined ) {
+      this.props.cart.map(item => totalCart += item.count)
+    }
+    return totalCart
+  }
 
   render() {
     // debugger
     // if (!this.props.cart.length) return null;
-    console.log(this.props)
+    console.log(this.props);
     return (
       <nav>
         <h1 id='title'>Blips &amp; Chitz</h1>
@@ -35,17 +48,11 @@ class Header extends Component {
             </li>
           ) : null}
           <li>
-
-            {/* <Link to='/'>
-              {Object.keys(this.props).length  ? (
-                Object.keys(this.props.cart).length ? (
-                  <a>Cart{this.props.cart.cart_items.length}</a>
-                ) : (
-                  <a></a>
-                )
-              ) : null}
-            </Link> */}
-            { !this.props.currentUser.admin ? <li><Link to='/cart'>{`Cart(${this.props.cart.products.length})`}</Link>  </li> : null}
+            {!this.props.currentUser.admin ? (
+              <li className='cart-text'>
+                <Link to='/cart'>{`Cart: ${this.addTotal()}`}</Link>{" "}
+              </li>
+            ) : null}
           </li>
         </ul>
       </nav>

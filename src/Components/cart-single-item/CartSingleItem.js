@@ -3,34 +3,58 @@ import "./cart-single-item.styles.scss";
 
 class CartSingleItem extends React.Component {
   state = {
-    quantity: 1,
-    price: this.props.itemDetails.price,
-    adjustedPrice: this.props.itemDetails.price
-  }
+    quantity: this.props.itemDetails.count,
+    price: this.props.itemDetails.products.price,
+    adjustedPrice: this.props.itemDetails.products.price
+  };
 
-
+  // Add count to quantity
   handleAdd = () => {
-    this.setState({
-      quantity: this.state.quantity + 1,
-      adjustedPrice: this.state.adjustedPrice + this.state.price
+    fetch(`http://localhost:3000/cart_items/${this.props.itemDetails.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.token
+      },
+      body: JSON.stringify({
+        count: this.state.quantity + 1
+      })
     })
-    this.props.cartTotalAdd(this.state.price)
-  }
+      .then(resp => resp.json())
+      .then(data =>
+        this.setState({
+          quantity: this.state.quantity + 1,
+          adjustedPrice: this.state.adjustedPrice + this.state.price
+        })
+      );
+    this.props.cartTotalAdd(this.state.price);
+  };
 
   handleSubtract = () => {
-    this.setState({
-      quantity: this.state.quantity - 1,
-      adjustedPrice: this.state.adjustedPrice - this.state.price
+    fetch(`http://localhost:3000/cart_items/${this.props.itemDetails.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: localStorage.token
+      },
+      body: JSON.stringify({
+        count: this.state.quantity - 1
+      })
     })
-    this.props.cartTotalSubtract(this.state.price)
-  }
-
-  // this.setState((prevState, prevProps) => {
-	// 	return { meaningOfLife: prevState.meaningOfLife + prevProps.increment }
+      .then(resp => resp.json())
+      .then(data =>
+        this.setState({
+          quantity: this.state.quantity - 1,
+          adjustedPrice: this.state.adjustedPrice - this.state.price
+        })
+      );
+    this.props.cartTotalSubtract(this.state.price);
+  };
 
   render() {
-    const { name, color, imageUrl, price, size } = this.props.itemDetails;
-
+    const { name, color, imageUrl, size } = this.props.itemDetails.products;
     return (
       <div className='cart-single-item'>
         <div className='product-image'>
@@ -53,7 +77,7 @@ class CartSingleItem extends React.Component {
               <p>{this.state.quantity}</p>
               <p onClick={this.handleAdd}>+</p>
             </div>
-            <p>{`$${this.state.adjustedPrice}`}</p>
+            <p>{`$${this.state.price * this.state.quantity}`}</p>
           </div>
         </div>
       </div>

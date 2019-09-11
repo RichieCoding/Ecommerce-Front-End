@@ -4,10 +4,11 @@ import LoginPage from "./Containers/login-page/LoginPage";
 import ProfilePage from "./Components/ProfilePage";
 import SignUpPage from "./Containers/SignUpContainer";
 import AdminOverviewContainer from "./Containers/AdminOverviewContainer";
-import ShopHomePage from "./Containers/ShopHomePage";
+import ShopHomePage from "./Containers/shop-home-page/ShopHomePage";
 import Header from "./Components/header/Header"
 import CartPage from "./Containers/cart-page/CartPage"
 import { Switch, Route } from "react-router-dom";
+import ShopProductPage from "./Containers/shop-product-page/ShopProductPage";
 
 class App extends Component {
   state = {
@@ -16,10 +17,7 @@ class App extends Component {
     currentUser: {
       admin: false
     },
-    cart: {
-      products: []
-    }
-     
+    cart: []
   };
 
   redirect = page => {
@@ -38,7 +36,7 @@ class App extends Component {
     .then(resp => resp.json())
     .then(parsedData => {
       if (localStorage.token) {
-        this.fetchCartItems(parsedData.cart.id)
+        this.fetchCartItems(parsedData.id)
       
       this.setState({
         currentUser: parsedData
@@ -53,7 +51,7 @@ class App extends Component {
 
   // Fetch Cart Items
   fetchCartItems = (id) => {
-    fetch(`http://localhost:3000/carts/${id}`, {
+    fetch(`http://localhost:3000/cart_items/${id}`, {
       headers: {
         'Authorization': localStorage.token
       }
@@ -64,14 +62,21 @@ class App extends Component {
     }))
   }
 
+  getCartAgain = () => {
+    this.componentDidMount()
+  }
+
+  setCartToZero = () => {
+    this.setState({
+      cart: []
+    })
+  }
+
   // Fetch all products
   fetchProducts = () => {
     fetch("http://localhost:3000/products")
       .then(resp => resp.json())
       .then(parsedData => {
-        // const sortedProducts = parsedData.sort(function(a,b){
-        //   return a.varientID.localeCompare(b.varientID)
-        // })
         this.setState({
           products: parsedData
         });
@@ -94,13 +99,19 @@ class App extends Component {
   render() {
     return (
       <>
-      <Header cart={this.state.cart} handleCartFetch={this.handleCartFetch} currentUser={this.state.currentUser} />
+      <Header cart={this.state.cart} setCartToZero={this.setCartToZero} handleCartFetch={this.handleCartFetch} currentUser={this.state.currentUser} />
       <Switch>
         <Route exact path='/' render={routerProps => (<ShopHomePage cart={this.state.cart} />)} />
         <Route
           path='/login'
           render={routerProps => (
             <LoginPage handleCartFetch={this.handleCartFetch} getCurrentUser={this.getCurrentUser} {...routerProps} />
+          )}
+        />
+        <Route
+          path='/shop'
+          render={routerProps => (
+            <ShopProductPage handleCartFetch={this.handleCartFetch} getCurrentUser={this.getCurrentUser} {...routerProps} />
           )}
         />
         <Route
@@ -121,6 +132,7 @@ class App extends Component {
             <CartPage
               {...routerProps}
               currentUser={this.state.currentUser}
+              getCartAgain={this.getCartAgain}
             />
           )}
         />
