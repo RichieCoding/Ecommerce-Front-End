@@ -23,4 +23,20 @@ nav {
       color: black;
     }
   }
+
+  .cart-text {
+    font-size: 1em;
+
+    a {
+      border: 1px solid black;
+      padding: 10px;
+      border-radius: 20px;
+      margin-left: 2px;
+
+      &:hover {
+        background: rgb(39, 39, 39);
+        color: white;
+      }
+    }
+  }
 }
