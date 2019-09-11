@@ -4,23 +4,23 @@ import "./header.styles.scss";
 
 class Header extends Component {
   state = {
-    cartLength: ''
-  }
+    cartLength: ""
+  };
 
   handleClick = () => {
     localStorage.clear();
     this.props.handleCartFetch();
-    this.props.setCartToZero()
+    this.props.setCartToZero();
     // this.props.history.push('/')
   };
 
   addTotal = () => {
     let totalCart = 0;
-    if (this.props.cart !== undefined ) {
-      this.props.cart.map(item => totalCart += item.count)
+    if (this.props.cart !== undefined) {
+      this.props.cart.map(item => (totalCart += item.count));
     }
-    return totalCart
-  }
+    return totalCart;
+  };
 
   render() {
     // debugger
@@ -28,11 +28,11 @@ class Header extends Component {
     console.log(this.props);
     return (
       <nav>
-        <h1 id='title'>Blips &amp; Chitz</h1>
+        <h3>
+          <Link to='/shop'>Shop</Link>
+        </h3>
+        <Link to='/'><h1 id='title'>Blips &amp; Chitz</h1></Link>
         <ul>
-          <li>
-            <Link to='/'>Home</Link>
-          </li>
           {localStorage.token ? (
             <li>
               <Link to='/profile'>Profile</Link>

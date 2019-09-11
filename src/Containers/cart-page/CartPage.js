@@ -28,14 +28,14 @@ class CartPage extends Component {
     this.setState({
       cartTotal: this.state.cartTotal + addPrice
     });
-    this.props.getCartAgain()
+    this.props.handleCartFetch()
   };
 
   cartTotalSubtract = subtractPrice => {
     this.setState({
       cartTotal: this.state.cartTotal - subtractPrice
     });
-    this.props.getCartAgain()
+    this.props.handleCartFetch()
   };
 
   componentDidMount() {
@@ -72,6 +72,12 @@ class CartPage extends Component {
       });
   };
 
+  renderCartPage = () => {
+    this.componentDidMount()
+  }
+
+  
+
   render() {
     const renderCartItems = this.state.currentCart1.sort((a,b) => a.id - b.id).map(item => {
       return (
@@ -80,6 +86,8 @@ class CartPage extends Component {
           cartTotalSubtract={this.cartTotalSubtract}
           cartTotal={this.cartTotal}
           itemDetails={item}
+          renderCartPage={this.renderCartPage}
+          handleCartFetch={this.props.handleCartFetch}
         />
       );
     });

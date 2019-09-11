@@ -8,6 +8,24 @@ class CartSingleItem extends React.Component {
     adjustedPrice: this.props.itemDetails.products.price
   };
 
+  //Remove Product from cart
+  handleRemove = () => {
+    fetch(`http://localhost:3000/cart_items/${this.props.itemDetails.id}`, {
+      method: "DELETE"
+    })
+    .then(this.props.renderCartPage())
+    .then(this.props.handleCartFetch())
+  }
+
+  // deleteProduct = () => {
+  //   fetch(`http://localhost:3000/products/${this.state.deleteProductId}`, {
+  //     method: "DELETE"
+  //   }).then(parsedData => {
+  //     this.props.updateQuantity(parsedData);
+  //     this.handleDeleteClick();
+  //   });
+  // };
+
   // Add count to quantity
   handleAdd = () => {
     fetch(`http://localhost:3000/cart_items/${this.props.itemDetails.id}`, {
@@ -63,7 +81,7 @@ class CartSingleItem extends React.Component {
         <div className='product-info'>
           <div className='product-name product-text'>
             <p>{name}</p>
-            <p>X</p>
+            <p onClick={this.handleRemove}>X</p>
           </div>
           <div className='product-size product-text'>
             <p>{`Size: ${size}`}</p>
