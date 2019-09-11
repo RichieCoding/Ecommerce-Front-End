@@ -6,6 +6,7 @@ import ConfirmDelete from "../Components/ConfirmDelete";
 
 export class SingleProduct extends Component {
 
+
   handleUpClick = () => {
     fetch(`http://localhost:3000/products/${this.props.product.id}`, {
       method: "PATCH",
