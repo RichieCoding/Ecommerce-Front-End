@@ -7,30 +7,36 @@ class CartPage extends Component {
     currentCart: {
       products: []
     },
+    // currentCartCount: {
+    //   count_items: []
+    // },
+    currentCart1: [],
     cartTotal: ""
   };
 
   cartTotal = () => {
     let total = 0;
-    this.state.currentCart.products.map(product => {
-      total += product.price;
+    this.state.currentCart1.map(cartProduct => {
+     total += cartProduct.products.price * cartProduct.count;
     });
     this.setState({
       cartTotal: total
     });
   };
 
-  cartTotalAdd = (addPrice) => {
+  cartTotalAdd = addPrice => {
     this.setState({
       cartTotal: this.state.cartTotal + addPrice
-    })
-  }
+    });
+    this.props.getCartAgain()
+  };
 
-  cartTotalSubtract = (subtractPrice) => {
+  cartTotalSubtract = subtractPrice => {
     this.setState({
       cartTotal: this.state.cartTotal - subtractPrice
-    })
-  }
+    });
+    this.props.getCartAgain()
+  };
 
   componentDidMount() {
     fetch("http://localhost:3000/profile", {
@@ -38,36 +44,44 @@ class CartPage extends Component {
         Authorization: localStorage.token
       }
     })
-    .then(resp => resp.json())
-    .then(parsedData => {
-      // if (localStorage.token) {
-      //   this.fetchCartItems(parsedData.cart.id)
-      // }
-      if (localStorage.token) {
-        this.fetchCart(parsedData.cart.id);
-      }
-      
-    });
+      .then(resp => resp.json())
+      .then(parsedData => {
+        // debugger
+        // if (localStorage.token) {
+        //   this.fetchCartItems(parsedData.cart.id)
+        // }
+        if (localStorage.token) {
+          this.fetchCart(parsedData.id);
+        }
+      });
   }
 
   fetchCart = id => {
-    fetch(`http://localhost:3000/carts/${id}`, {
+    fetch(`http://localhost:3000/cart_items/${id}`, {
       headers: {
         Authorization: localStorage.token
       }
     })
       .then(resp => resp.json())
       .then(parsedData => {
+        // debugger
         this.setState({
-          currentCart: parsedData
+          currentCart1: parsedData
         });
-        this.cartTotal()
+        this.cartTotal();
       });
   };
 
   render() {
-    const renderCartItems = this.state.currentCart.products.map(item => {
-      return <CartSingleItem cartTotalAdd={this.cartTotalAdd} cartTotalSubtract={this.cartTotalSubtract} cartTotal={this.cartTotal} itemDetails={item} />;
+    const renderCartItems = this.state.currentCart1.sort((a,b) => a.id - b.id).map(item => {
+      return (
+        <CartSingleItem
+          cartTotalAdd={this.cartTotalAdd}
+          cartTotalSubtract={this.cartTotalSubtract}
+          cartTotal={this.cartTotal}
+          itemDetails={item}
+        />
+      );
     });
     return (
       <>
