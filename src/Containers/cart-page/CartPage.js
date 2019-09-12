@@ -76,6 +76,16 @@ class CartPage extends Component {
     this.componentDidMount()
   }
 
+  handleCheckout = () => {
+    console.log('hello')
+    fetch('http://localhost:3000/checkout', {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.token
+      }
+    })
+  }
+
   
 
   render() {
@@ -104,7 +114,7 @@ class CartPage extends Component {
               <p>${this.state.cartTotal}</p>
             </div>
             <div className='checkout'>
-              <button>Checkout</button>
+              <button onClick={this.handleCheckout}>Checkout</button>
             </div>
           </div>
         </div>
