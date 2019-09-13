@@ -11,7 +11,8 @@ class CartPage extends Component {
     //   count_items: []
     // },
     currentCart1: [],
-    cartTotal: ""
+    cartTotal: "",
+    checkedOut: false
   };
 
   cartTotal = () => {
@@ -70,6 +71,7 @@ class CartPage extends Component {
         });
         this.cartTotal();
       });
+      this.props.handleCartFetch()
   };
 
   renderCartPage = () => {
@@ -84,6 +86,12 @@ class CartPage extends Component {
         Authorization: localStorage.token
       }
     })
+    .then(() => this.setState({
+      currentCart1: [],
+      cartTotal: 0
+    }))
+    this.props.updateCartToZero()
+    this.props.updateQuantity()
   }
 
   
