@@ -6,7 +6,8 @@ import AdminShowOrder from "../Components/admin-show-order/AdminShowOrder";
 class OrderContainer extends Component {
   state = {
     orders: [],
-    modalClicked: false
+    modalClicked: false,
+    totalEarning: 0
   };
 
   componentDidMount() {
@@ -22,6 +23,23 @@ class OrderContainer extends Component {
           orders: parsedData
         });
       });
+      this.fetchTotalEarnings()
+  }
+
+  fetchTotalEarnings = () => {
+    fetch('http://localhost:3000/order_products', {
+      headers: {
+        Authorization: localStorage.token
+      }
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      let totalEarningArr = data.map(order => order.product.price);
+      let totalEarning = totalEarningArr.reduce((sum, item) => sum += item)
+      this.setState({
+        totalEarning
+      })
+    })
   }
 
   // Fetchs order details and grabs user id from AdminSingleOrder
@@ -65,7 +83,7 @@ class OrderContainer extends Component {
       <div className='render-menu-container'>
         <div className='admin-info-bar'>
           <AdminInfoBox title={"Total Sales"} info={numberOfSales} />
-          <AdminInfoBox title={"Total Earnings"} price={`12212`} />
+          <AdminInfoBox title={"Total Earnings"} price={this.state.totalEarning} />
           <AdminInfoBox title={"Top Customer"} customer={"Sean"} />
         </div>
         <div className='admin-order-component'>{renderOrders}</div>
