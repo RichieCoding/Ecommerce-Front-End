@@ -66,6 +66,10 @@ class CartSingleItem extends React.Component {
         this.setState({
           quantity: this.state.quantity - 1,
           adjustedPrice: this.state.adjustedPrice - this.state.price
+        }, () => {
+          if (this.state.quantity === 0) {
+            this.handleRemove()
+          }
         })
       );
     this.props.cartTotalSubtract(this.state.price);
