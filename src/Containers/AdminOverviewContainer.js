@@ -4,12 +4,13 @@ import InventoryContainer from "./InventoryContainer";
 import AdminMenu from "../Components/AdminMenu";
 import Header from "../Components/header/Header";
 import AllUsersContainer from "./AllUsersContainer";
-import SettingsContainer from './SettingsContainer';
+import SettingsContainer from './settings-page/SettingsContainer';
 
 class AdminOverviewContainer extends Component {
   state = {
     // Default Component is Order
-    renderClick: "Orders"
+    renderClick: "Orders",
+    darkMode: false
   };
 
   handleClick = value => {
@@ -18,6 +19,12 @@ class AdminOverviewContainer extends Component {
       renderClick: value
     });
   };
+
+  handleDarkMode = () => {
+    this.setState({
+      darkMode: !this.state.darkMode
+    })
+  }
 
   // Switches between different components
   renderClickedComponent = () => {
@@ -34,7 +41,7 @@ class AdminOverviewContainer extends Component {
       case "Customers":
         return <AllUsersContainer />;
       case "Settings":
-        return <SettingsContainer />;
+        return <SettingsContainer handleDarkMode={this.handleDarkMode} />;
       default:
         return <OrderContainer />;
     }
@@ -43,7 +50,7 @@ class AdminOverviewContainer extends Component {
   render() {
     return (
  
-        <div className='admin-container'>
+        <div className='admin-container' style={this.state.darkMode ? darkModeStyles : null}>
           {/* <Header admin={true}/> */}
           <div className='admin-title'>
             <h3>{this.state.renderClick}</h3>
@@ -54,6 +61,10 @@ class AdminOverviewContainer extends Component {
 
     );
   }
+}
+
+const darkModeStyles = {
+  background: 'rgb(105,105,105)'
 }
 
 export default AdminOverviewContainer;

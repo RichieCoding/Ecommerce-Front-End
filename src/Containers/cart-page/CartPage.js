@@ -11,7 +11,8 @@ class CartPage extends Component {
     //   count_items: []
     // },
     currentCart1: [],
-    cartTotal: ""
+    cartTotal: "",
+    checkedOut: false
   };
 
   cartTotal = () => {
@@ -70,10 +71,27 @@ class CartPage extends Component {
         });
         this.cartTotal();
       });
+      this.props.handleCartFetch()
   };
 
   renderCartPage = () => {
     this.componentDidMount()
+  }
+
+  handleCheckout = () => {
+    console.log('hello')
+    fetch('http://localhost:3000/checkout', {
+      method: "POST",
+      headers: {
+        Authorization: localStorage.token
+      }
+    })
+    .then(() => this.setState({
+      currentCart1: [],
+      cartTotal: 0
+    }))
+    this.props.updateCartToZero()
+    this.props.updateQuantity()
   }
 
   
@@ -104,7 +122,7 @@ class CartPage extends Component {
               <p>${this.state.cartTotal}</p>
             </div>
             <div className='checkout'>
-              <button>Checkout</button>
+              <button onClick={this.handleCheckout}>Checkout</button>
             </div>
           </div>
         </div>
