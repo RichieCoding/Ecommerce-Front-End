@@ -6,6 +6,8 @@ import Header from "../header/Header";
 
 const UserProfile = props => {
   const { first_name, username } = props.userInfo;
+  // const sorted = props.usersOrders.sort(function(a,b){
+  //   return b.name.localeCompare(a.name)})
   const renderOrders =
     props.usersOrders !== undefined
       ? props.usersOrders.map((order, index) => {
@@ -36,7 +38,7 @@ const UserProfile = props => {
             {/* All Order Details */}
             <div className='order-details'>
               <div className='all-order-title'>
-                <h3>All Orders</h3>
+                <h2>All Orders</h2>
               </div>
               <div>{renderOrders}</div>
             </div>
