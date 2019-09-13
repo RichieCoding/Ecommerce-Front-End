@@ -89,6 +89,12 @@ class App extends Component {
     this.fetchProducts();
   };
 
+  updateCartToZero = () => {
+    this.setState({
+      cart: []
+    })
+  }
+
   render() {
     return (
       <>
@@ -158,6 +164,8 @@ class App extends Component {
                 {...routerProps}
                 currentUser={this.state.currentUser}
                 handleCartFetch={this.handleCartFetch}
+                updateQuantity={this.updateQuantity}
+                updateCartToZero={this.updateCartToZero}
               />
             )}
           />
