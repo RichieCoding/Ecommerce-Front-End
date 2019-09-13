@@ -33,6 +33,8 @@
 
       .order-details {
         grid-area: order;
+        overflow: scroll;
+        padding: 10px;
 
         .all-order-title {
           text-align: center;
@@ -44,6 +46,7 @@
         overflow: scroll;
 
         .edit-title {
+          margin-top: 10px;
           text-align: center;
         }
       }
