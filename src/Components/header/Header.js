@@ -31,7 +31,6 @@ class Header extends Component {
         <h3>
           <Link to='/shop'>Shop</Link>
         </h3>
-        <Link to='/'><h1 id='title'>Blips &amp; Chitz</h1></Link>
         <ul>
           {localStorage.token ? (
             <li>
@@ -55,6 +54,9 @@ class Header extends Component {
             ) : null}
           </li>
         </ul>
+        <div className={'logo'}>
+          <Link to='/'><h1 id='title'>Blips &amp; Chitz</h1></Link>
+        </div>
       </nav>
     );
   }
