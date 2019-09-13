@@ -32,7 +32,16 @@ class CustomerProfileForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state)
+    fetch(`http://localhost:3000/users/${this.state.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        ...this.state
+      })
+    })
   }
 
   handleChange = (e) => {
