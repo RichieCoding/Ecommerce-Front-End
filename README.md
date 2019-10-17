@@ -11,7 +11,7 @@ Go to https://github.com/RichieCoding/Ecommerce-Backend-Project for backend.
 
 Open [http://localhost:3000] or if backend is running [http://localhost:30001] to view it in the browser.
 
-## `Getting Started`
+## `Built With`
 
 * React
 * SCSS
