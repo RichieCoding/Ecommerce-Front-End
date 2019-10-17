@@ -55,7 +55,7 @@ class Header extends Component {
           </li>
         </ul>
         <div className={'logo'}>
-          <Link to='/'><h1 id='title'>Blips &amp; Chitz</h1></Link>
+          <Link to='/'><h1 id='title'>Shoppie</h1></Link>
         </div>
       </nav>
     );

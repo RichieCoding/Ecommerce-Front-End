@@ -1,8 +1,11 @@
 .shop-product-page {
-  display: flex;
-  justify-content: space-between ;
-  flex-wrap: wrap;
+  // display: flex;
+  // justify-content: space-between ;
+  // flex-wrap: wrap;
   width: 90%;
   margin: 4em auto;
   max-width: 1125px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-gap: 25px;
 }

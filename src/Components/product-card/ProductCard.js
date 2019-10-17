@@ -88,7 +88,6 @@ class ProductCard extends Component {
             className='product-img'
             src={this.props.product.imageUrl}
             alt='product'
-            style={{ width: "260px" }}
           />
           {this.state.hover || this.state.status === "SOLD OUT" ? <button onClick={this.addToCart} className='hover-add-to-cart'>{this.state.status}</button> : null}
           {/* <div className='hover-add-to-cart'>
