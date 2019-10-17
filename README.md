@@ -4,7 +4,7 @@ An ecommerce site where an admin can sign in and manage their ecommerce site. Th
 
 ### `Goal`
 
-Create a single page application with React, utilizing components, props, state and their life cycles.
+Create a single page application with React, utilizing components, props, state and their life cycles. While fetching data from a rails backend and applying CRUD functionality.
 
 ## `Getting Started`
 
