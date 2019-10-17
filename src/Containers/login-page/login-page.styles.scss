@@ -6,8 +6,12 @@
   grid-template-columns: 1fr 1fr;
 
   .error-message {
+    display: inline-block;
+    margin-top: 20px;
     font-size: 1.1em;
     color: red;
+    border: 1px solid red;
+    padding: 5px;
   }
 
   .login-section {
@@ -34,6 +38,10 @@
       margin-bottom: 2em;
       border: none;
       border-bottom: 1px solid black;
+    }
+
+    .empty-input {
+      border-bottom: 1px solid red;
     }
 
     .submit {
