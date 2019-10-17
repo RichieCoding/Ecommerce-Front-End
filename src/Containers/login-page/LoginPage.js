@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import "./login-page.styles.scss";
 import { Link } from "react-router-dom";
 import Header from "../../Components/header/Header";
-import SignUpForm from '../../Components/signup-form/SignUpForm'
+import SignUpForm from "../../Components/signup-form/SignUpForm";
 
 class LoginPage extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    wrongUser: false,
+    emptyLogin: false
   };
 
   handleChange = e => {
@@ -18,48 +20,60 @@ class LoginPage extends Component {
 
   handleLoginIn = e => {
     e.preventDefault();
-    fetch("http://localhost:3000/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify(this.state)
-    })
-      .then(res => res.json())
-      .then(parsedResponse => {
-        // console.log(parsedResponse);
-        localStorage.setItem("token", parsedResponse.token);
-        this.props.handleCartFetch()
-        // this.getCurrentUser()
-        this.props.history.push("/profile")
+    const { username, password } = this.state;
+
+    // Checks if username and password inputs are empty
+    if (username && password !== "") {
+      fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(this.state)
+      })
+        .then(res => res.json())
+        .then(parsedResponse => {
+          localStorage.setItem("token", parsedResponse.token);
+
+          // If wrong username or password is entered
+          if (localStorage.token === "undefined") {
+            // Clear localstorage of the undefined token
+            localStorage.clear();
+            // Resets the form inputs and allows for error message to show up
+            this.setState({
+              username: "",
+              password: "",
+              wrongUser: true
+            });
+            setTimeout(() => {
+              this.setState({
+                wrongUser: false
+              });
+            }, 2000);
+          } else {
+            // When token is authenticated then this will fetch their cart and redirect to their profile
+            this.props.handleCartFetch();
+            this.props.history.push("/profile");
+          }
+        });
+    } else {
+      // If the username or password is empty then this changes state that will allow for error message
+      this.setState({
+        emptyLogin: true
       });
+      setTimeout(() => {
+        this.setState({
+          emptyLogin: false
+        });
+      }, 2000);
+    }
   };
-
-  // getCurrentUser = () => {
-  //   fetch('http://localhost:3000/profile', {
-  //     headers: {
-  //       Authorization: localStorage.token
-  //     }
-  //   })
-  //   .then(resp => resp.json())
-  //   .then(parsedData => {
-  //     this.props.getCurrentUser(parsedData)
-  //     this.setState({
-  //       currentuser: parsedData
-  //     })
-  //   })
-  // }
-
-  
 
   render() {
     return (
       <>
-        {/* <Header /> */}
         <div className='login-page'>
-          {/* <div className='login-signup-container'> */}
-
           <div className='login-section'>
             <div className='login-header'>
               <h3>I already have an account</h3>
@@ -85,6 +99,12 @@ class LoginPage extends Component {
               />
               <br></br>
               <input className='submit' type='submit' value='Log In' />
+              {this.state.emptyLogin ? (
+                <p className='error-message'>Please enter into all fields</p>
+              ) : null}
+              {this.state.wrongUser ? (
+                <p className='error-message'>Incorrect Username and/or Password</p>
+              ) : null}
             </form>
             <br></br>
           </div>
@@ -94,11 +114,9 @@ class LoginPage extends Component {
               <h3>I do not have an account</h3>
               <p>Sign up with your email and password</p>
             </div>
-            <SignUpForm history={this.props.history}/>
+            <SignUpForm history={this.props.history} />
             <br></br>
           </div>
-          {/* </div> */}
-          {/* <Link to='/signup'>Signup</Link> */}
         </div>
       </>
     );
