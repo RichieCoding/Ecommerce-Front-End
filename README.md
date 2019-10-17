@@ -1,6 +1,10 @@
-# Shoppie 
+# Shoppie (Frontend)
 
 An ecommerce site where an admin can sign in and manage their ecommerce site. They can track, add, and edit their inventory and view orders that are created by customers. A customer can view products, log in and place order.
+
+### `Goal`
+
+Create a single page application with React, utilizing components, props, state and their life cycles.
 
 ## `Getting Started`
 
