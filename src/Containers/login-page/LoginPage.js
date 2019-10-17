@@ -78,6 +78,12 @@ class LoginPage extends Component {
             <div className='login-header'>
               <h3>I already have an account</h3>
               <p>Sign in with your email and password</p>
+              {this.state.emptyLogin ? (
+                <p className='error-message'>Please enter into all fields</p>
+              ) : null}
+              {this.state.wrongUser ? (
+                <p className='error-message'>Incorrect Username and/or Password</p>
+              ) : null}
             </div>
             <form onSubmit={this.handleLoginIn}>
               <label>Username:</label>
@@ -87,6 +93,7 @@ class LoginPage extends Component {
                 value={this.state.username}
                 onChange={this.handleChange}
                 name='username'
+                className={ this.state.emptyLogin ? !this.state.username ? 'empty-input' : null : null}
               />
               <br></br>
               <label>Password:</label>
@@ -96,24 +103,16 @@ class LoginPage extends Component {
                 value={this.state.password}
                 onChange={this.handleChange}
                 name='password'
+                className={ this.state.emptyLogin ? !this.state.password ? 'empty-input' : null : null}
               />
               <br></br>
               <input className='submit' type='submit' value='Log In' />
-              {this.state.emptyLogin ? (
-                <p className='error-message'>Please enter into all fields</p>
-              ) : null}
-              {this.state.wrongUser ? (
-                <p className='error-message'>Incorrect Username and/or Password</p>
-              ) : null}
             </form>
             <br></br>
           </div>
 
           <div className='login-section'>
-            <div className='login-header'>
-              <h3>I do not have an account</h3>
-              <p>Sign up with your email and password</p>
-            </div>
+
             <SignUpForm history={this.props.history} />
             <br></br>
           </div>
