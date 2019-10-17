@@ -7,9 +7,6 @@ class CartPage extends Component {
     currentCart: {
       products: []
     },
-    // currentCartCount: {
-    //   count_items: []
-    // },
     currentCart1: [],
     cartTotal: "",
     checkedOut: false
@@ -47,10 +44,6 @@ class CartPage extends Component {
     })
       .then(resp => resp.json())
       .then(parsedData => {
-        // debugger
-        // if (localStorage.token) {
-        //   this.fetchCartItems(parsedData.cart.id)
-        // }
         if (localStorage.token) {
           this.fetchCart(parsedData.id);
         }
@@ -79,7 +72,6 @@ class CartPage extends Component {
   }
 
   handleCheckout = () => {
-    console.log('hello')
     fetch('http://localhost:3000/checkout', {
       method: "POST",
       headers: {

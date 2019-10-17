@@ -85,7 +85,7 @@ class ProductCard extends Component {
         <div onMouseEnter = {this.handleMouseEnter}
             onMouseLeave = {this.handleMouseLeave} className='product-image'>
           <img 
-            style={{filter: 'blur(4px)'}}
+            className='product-img'
             src={this.props.product.imageUrl}
             alt='product'
             style={{ width: "260px" }}

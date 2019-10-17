@@ -5,7 +5,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 
-  
+  .error-message {
+    font-size: 1.1em;
+    color: red;
+  }
 
   .login-section {
     width: 60%;
