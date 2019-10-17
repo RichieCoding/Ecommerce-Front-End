@@ -6,8 +6,9 @@ An ecommerce site where an admin can sign in and manage their ecommerce site. Th
 
 Go to https://github.com/RichieCoding/Ecommerce-Backend-Project for backend.
 
-1. Run npm install for dependencies
-2. Run npm start after running backend
+1. Get backend api running
+2. Run npm install for dependencies
+3. Run npm start 
 
 Open [http://localhost:3000] or if backend is running [http://localhost:30001] to view it in the browser.
 
