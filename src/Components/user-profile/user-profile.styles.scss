@@ -43,11 +43,25 @@
       }
 
       .all-user-info {
+        position: relative;
         overflow: scroll;
 
         .edit-title {
           margin-top: 10px;
           text-align: center;
+        }
+
+        .test {
+          position: fixed;
+          top: 50%;
+          right: 23%;
+          transform: translate(-50%, -50%);
+
+          h2 {
+            background: rgb(51, 53, 75);
+            padding: 15px;
+            color: white;
+          }
         }
       }
 
