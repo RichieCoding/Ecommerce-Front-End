@@ -8,7 +8,7 @@ class OrderContainer extends Component {
     orders: [],
     modalClicked: false,
     totalEarning: 0,
-    topCustomer: ""
+    topCustomer: "None"
   };
 
   componentDidMount() {
@@ -39,7 +39,6 @@ class OrderContainer extends Component {
       .then(data => {
         // If 0 zero orders were placed than set earnings to 0
         if (data.length !== 0) {
-          console.log(data);
           let totalEarningArr = data.map(order => order.product.price);
           let totalEarning = totalEarningArr.reduce(
             (sum, item) => (sum += item)
@@ -69,32 +68,36 @@ class OrderContainer extends Component {
           const customers = {};
           // Loop through all orders from data
           parsedOrders.map(order => {
-            // If the customer is not in object than make a key with their name and set value to 1
+            // If the customer is not in object than make a key with their id and set value to 1
             // If the customer is there than just add one to the current value
-            if (!customers[order.user.first_name]) {
-              customers[order.user.first_name] = 1;
+            if (!customers[order.user.id]) {
+              customers[order.user.id] = 1;
             } else {
-              customers[order.user.first_name] += 1;
+              customers[order.user.id] += 1;
             }
           });
           // Looping all the values and comparing them and returning the highest value
           const topCustomer = Object.keys(customers).reduce((a, b) =>
             customers[a] > customers[b] ? a : b
           );
-          this.setState({
-            topCustomer: topCustomer
-          });
-        } else {
-          this.setState({
-            topCustomer: 'None'
+          // Make a fetch with the users id
+          fetch(`http://localhost:3000/users/${topCustomer}`, {
+            headers: {
+              Authorization: localStorage.token
+            }
           })
+          .then(resp => resp.json())
+          .then(data => {
+            this.setState({
+              topCustomer: data.first_name
+            });
+          })  
         }
       });
   };
 
   // Fetchs order details and grabs user id from AdminSingleOrder
   handleClick = orderId => {
-    console.log(orderId);
     fetch(`http://localhost:3000/orders/${orderId}`, {
       headers: {
         Authorization: localStorage.token
@@ -128,7 +131,6 @@ class OrderContainer extends Component {
       );
     });
     const numberOfSales = this.state.orders.length;
-    console.log(numberOfSales);
     return (
       <div className='render-menu-container'>
         <div className='admin-info-bar'>
