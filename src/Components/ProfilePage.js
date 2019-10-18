@@ -53,7 +53,6 @@ class ProfilePage extends Component {
 
   render() {
     const { admin } = this.state.currentUser;
-    console.log(this.props.cart)
     if (admin && localStorage.token) {
       return (
         <AdminOverviewContainer
