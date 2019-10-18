@@ -24,7 +24,6 @@ const UserProfile = props => {
   // const renderOrders = orders.map()
   return (
     <>
-      {/* <Header cart={props.cart} /> */}
       <div className='user-profile'>
         <div className='user-container'>
           <header className='welcome'>
@@ -47,7 +46,6 @@ const UserProfile = props => {
               <div className='edit-title'>
                 <h2>Your Profile</h2>
               </div>
-
               <CustomerProfileForm
                 currentUser={props.currentUser}
                 usersOrders={props.usersOrders}
