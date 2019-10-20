@@ -19,7 +19,7 @@ class ProfilePage extends Component {
   }
 
   fetchAllUserOrders = () => {
-    fetch(`http://localhost:3000/users/${this.state.currentUser.id}`, {
+    fetch(`https://shoppie-final-backend.herokuapp.com/users/${this.state.currentUser.id}`, {
       headers: {
         Authorization: localStorage.token
       }
@@ -34,7 +34,7 @@ class ProfilePage extends Component {
 
   checkForToken = () => {
     if (localStorage.token) {
-      fetch("http://localhost:3000/profile", {
+      fetch("https://shoppie-final-backend.herokuapp.com/profile", {
         headers: {
           Authorization: localStorage.token
         }
