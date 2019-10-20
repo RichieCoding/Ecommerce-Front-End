@@ -16,7 +16,7 @@ class SingleUser extends Component {
 
   handleSubmit = (e, userInfo, id) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/users/${id}`, {
+    fetch(`https://shoppie-final-backend.herokuapp.com/users/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
