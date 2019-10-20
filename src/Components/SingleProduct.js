@@ -8,7 +8,7 @@ export class SingleProduct extends Component {
 
 
   handleUpClick = () => {
-    fetch(`http://localhost:3000/products/${this.props.product.id}`, {
+    fetch(`https://shoppie-final-backend.herokuapp.com/products/${this.props.product.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ export class SingleProduct extends Component {
   };
 
   handleDownClick = () => {
-    fetch(`http://localhost:3000/products/${this.props.product.id}`, {
+    fetch(`https://shoppie-final-backend.herokuapp.com/products/${this.props.product.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
