@@ -10,7 +10,7 @@ class CustomerSingleOrderPreview extends Component {
 
   handleClick = () => {
     console.log(this.props.orderId);
-    fetch(`http://localhost:3000/orders/${this.props.orderId}`, {
+    fetch(`https://shoppie-final-backend.herokuapp.com/orders/${this.props.orderId}`, {
       headers: {
         Authorization: localStorage.token
       }
