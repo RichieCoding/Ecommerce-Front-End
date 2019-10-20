@@ -37,7 +37,7 @@ class ProductCard extends Component {
       console.log(findProduct);
     } else {
       console.log("not in cart");
-      fetch(`http://localhost:3000/cart_items`, {
+      fetch(`https://shoppie-final-backend.herokuapp.com/cart_items`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
