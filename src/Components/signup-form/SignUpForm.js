@@ -13,7 +13,7 @@ class SignUpForm extends Component {
     e.preventDefault();
     const { first_name, username, email, password } = this.state;
     if ((first_name, username, email, password !== "")) {
-      fetch("http://localhost:3000/users", {
+      fetch("https://shoppie-final-backend.herokuapp.com/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
