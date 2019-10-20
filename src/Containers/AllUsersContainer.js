@@ -11,7 +11,7 @@ class AllUsersContainer extends Component {
   }
 
   fetchAllUsers = () => {
-    fetch("http://localhost:3000/users", {
+    fetch("https://shoppie-final-backend.herokuapp.com/users", {
       headers: {
         Authorization: localStorage.token
       }
