@@ -4,7 +4,7 @@ import UserForms from "../Components/UserForms";
 class SignUpContainer extends Component {
   handleSubmit = (e, userInfo) => {
     e.preventDefault();
-    fetch("http://localhost:3000/users", {
+    fetch("https://shoppie-final-backend.herokuapp.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
