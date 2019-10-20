@@ -6,6 +6,7 @@ class ProductForm extends Component {
     color: "",
     size: "",
     quantity: "",
+    category: '',
     price: "",
     varientId: "",
     imageUrl: "",
@@ -79,6 +80,7 @@ class ProductForm extends Component {
       color,
       size,
       quantity,
+      category,
       price,
       varientId,
       imageUrl,
@@ -87,6 +89,15 @@ class ProductForm extends Component {
     return (
       <div className='product-form-wrapper'>
         <form onSubmit={this.handleSubmit}>
+        <label htmlFor='category'>Category:</label>
+          <br></br>
+          <input
+            onChange={this.handleChange}
+            value={category}
+            type='text'
+            id='category'
+            name='category'
+          />
           <label htmlFor='name'>Product Name:</label>
           <br></br>
           <input
