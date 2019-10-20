@@ -68,7 +68,7 @@ class InventoryContainer extends Component {
 
   // Deletes a product
   deleteProduct = () => {
-    fetch(`http://localhost:3000/products/${this.state.deleteProductId}`, {
+    fetch(`https://shoppie-final-backend.herokuapp.com/products/${this.state.deleteProductId}`, {
       method: "DELETE"
     }).then(parsedData => {
       this.props.updateQuantity(parsedData);
