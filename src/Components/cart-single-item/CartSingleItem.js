@@ -85,7 +85,7 @@ class CartSingleItem extends React.Component {
         <div className='product-info'>
           <div className='product-name product-text'>
             <p>{name}</p>
-            <p onClick={this.handleRemove}>X</p>
+            <p onClick={this.handleRemove} className='delete-cart-item'>X</p>
           </div>
           <div className='product-size product-text'>
             <p>{`Size: ${size}`}</p>
@@ -95,9 +95,9 @@ class CartSingleItem extends React.Component {
           </div>
           <div className='product-price product-text'>
             <div className='product-increment'>
-              <p onClick={this.handleSubtract}>-</p>
+              <p className='add-subtract' onClick={this.handleSubtract}>-</p>
               <p>{this.state.quantity}</p>
-              <p onClick={this.handleAdd}>+</p>
+              <p className='add-subtract' onClick={this.handleAdd}>+</p>
             </div>
             <p>{`$${this.state.price * this.state.quantity}`}</p>
           </div>
