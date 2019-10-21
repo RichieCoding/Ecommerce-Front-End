@@ -104,7 +104,10 @@ class CartPage extends Component {
     return (
       <>
         <div className='cart-page'>
-          <div>{renderCartItems}</div>
+          <div>
+            {this.state.cartTotal === 0 ? <p className='empty-cart'>Your Cart is Empty</p> : null }
+            {renderCartItems}
+          </div>
           <div className='checkout'>
             <div className='order-summary'>
               <p>Order Summary</p>
