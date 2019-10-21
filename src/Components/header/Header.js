@@ -28,7 +28,7 @@ class Header extends Component {
     console.log(this.props);
     return (
       <nav>
-        <h3>
+        <h3 className='shop-title'>
           <Link to='/shop'>Shop</Link>
         </h3>
         <ul>

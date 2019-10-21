@@ -14,11 +14,21 @@ nav {
     font-size: 1.5em;
   }
 
+  .shop-title {
+    a {
+      color: black;
+    }
+  }
+
   ul li {
     display: inline-block;
     color: black;
     margin-left: 20px;
     font-size: 1.3em;
+
+    a {
+      color: black;
+    }
 
     a:visited {
       color: black;
