@@ -2,17 +2,24 @@
   display: flex;
   padding: 15px 0;
   border-top: 0.6px solid rgb(197, 197, 197);
-  width: 80%;
-  margin: 0 auto;
+  width: 90%;
 
   .product-info {
     width: 100%;
+
+    .delete-cart-item {
+      cursor: pointer;
+    }
 
     .product-text {
       width: 100%;
       display: flex;
       padding: 0 5px 8px 15px;
       justify-content: space-between;
+
+      .add-subtract {
+        cursor: pointer;
+      }
 
     }
 
