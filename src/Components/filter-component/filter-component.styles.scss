@@ -1,0 +1,33 @@
+.filter-component {
+  width: 90%;
+  margin: 1em auto;
+  // height: 300px;
+  // background: red;
+  border-top: 1px solid black;
+
+  .filter-wrapper {
+    width: 100%;
+    margin: 1em 0;
+
+    .category {
+      display: flex;
+      flex-direction: column;
+
+      .filter-title {
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      input {
+        margin-right: 5px;
+      }
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+    }
+  }
+
+}

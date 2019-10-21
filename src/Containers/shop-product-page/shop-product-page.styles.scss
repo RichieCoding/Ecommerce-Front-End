@@ -1,8 +1,32 @@
 .shop-product-page {
   width: 90%;
-  margin: 4em auto;
+  margin: 1em auto;
   max-width: 1325px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-gap: 25px;
+}
+
+.filter-banner {
+  width: 90%;
+  // background: red;
+  margin: 1em auto 0;
+  display: flex;
+  justify-content: space-between;
+
+  .filter-all {
+    font-size: 1em;
+  }
+
+  .filter-button {
+    cursor: pointer;
+    user-select: none;
+  }
+}
+
+.test {
+  width: 90%;
+  margin: 1em auto;
+  height: 300px;
+  background: red;
 }
