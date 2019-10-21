@@ -11,7 +11,7 @@ const ShopHomePage = () => (
     </div>
     <div className="secondary-banner">
       <Link to='/shop'><div className="first small-banner"><h3>SHOP</h3></div></Link>
-      <Link to='/shop'><div className="second small-banner"><h3>SALE</h3></div></Link>
+      <Link to='/profile'><div className="second small-banner"><h3>PROFILE</h3></div></Link>
     </div>
   </div>
 )
