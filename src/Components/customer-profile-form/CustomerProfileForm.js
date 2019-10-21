@@ -18,7 +18,7 @@ class CustomerProfileForm extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:3000/profile", {
+    fetch("https://shoppie-final-backend.herokuapp.com/profile", {
       headers: {
         Authorization: localStorage.token
       }
@@ -33,7 +33,7 @@ class CustomerProfileForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    fetch(`http://localhost:3000/users/${this.state.id}`, {
+    fetch(`https://shoppie-final-backend.herokuapp.com/users/${this.state.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

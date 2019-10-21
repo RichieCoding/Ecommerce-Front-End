@@ -24,7 +24,7 @@ class LoginPage extends Component {
 
     // Checks if username and password inputs are empty
     if (username && password !== "") {
-      fetch("http://localhost:3000/login", {
+      fetch("https://shoppie-final-backend.herokuapp.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

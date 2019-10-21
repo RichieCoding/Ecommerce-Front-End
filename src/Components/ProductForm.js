@@ -6,6 +6,7 @@ class ProductForm extends Component {
     color: "",
     size: "",
     quantity: "",
+    category: '',
     price: "",
     varientId: "",
     imageUrl: "",
@@ -29,7 +30,7 @@ class ProductForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     if (this.props.product !== undefined) {
-      fetch(`http://localhost:3000/products/${this.props.product.id}`, {
+      fetch(`https://shoppie-final-backend.herokuapp.com/products/${this.props.product.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +49,7 @@ class ProductForm extends Component {
     }
     else
       {
-      fetch('http://localhost:3000/products', {
+      fetch('https://shoppie-final-backend.herokuapp.com/products', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,6 +80,7 @@ class ProductForm extends Component {
       color,
       size,
       quantity,
+      category,
       price,
       varientId,
       imageUrl,
@@ -87,6 +89,15 @@ class ProductForm extends Component {
     return (
       <div className='product-form-wrapper'>
         <form onSubmit={this.handleSubmit}>
+        <label htmlFor='category'>Category:</label>
+          <br></br>
+          <input
+            onChange={this.handleChange}
+            value={category}
+            type='text'
+            id='category'
+            name='category'
+          />
           <label htmlFor='name'>Product Name:</label>
           <br></br>
           <input

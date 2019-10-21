@@ -37,7 +37,7 @@ class CartPage extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:3000/profile", {
+    fetch("https://shoppie-final-backend.herokuapp.com/profile", {
       headers: {
         Authorization: localStorage.token
       }
@@ -51,7 +51,7 @@ class CartPage extends Component {
   }
 
   fetchCart = id => {
-    fetch(`http://localhost:3000/cart_items/${id}`, {
+    fetch(`https://shoppie-final-backend.herokuapp.com/cart_items/${id}`, {
       headers: {
         Authorization: localStorage.token
       }
@@ -72,7 +72,7 @@ class CartPage extends Component {
   }
 
   handleCheckout = () => {
-    fetch('http://localhost:3000/checkout', {
+    fetch('https://shoppie-final-backend.herokuapp.com/checkout', {
       method: "POST",
       headers: {
         Authorization: localStorage.token
@@ -104,7 +104,10 @@ class CartPage extends Component {
     return (
       <>
         <div className='cart-page'>
-          <div>{renderCartItems}</div>
+          <div>
+            {this.state.cartTotal === 0 ? <p className='empty-cart'>Your Cart is Empty</p> : null }
+            {renderCartItems}
+          </div>
           <div className='checkout'>
             <div className='order-summary'>
               <p>Order Summary</p>

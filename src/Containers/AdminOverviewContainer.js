@@ -14,7 +14,6 @@ class AdminOverviewContainer extends Component {
   };
 
   handleClick = value => {
-    console.log(value);
     this.setState({
       renderClick: value
     });
@@ -51,7 +50,6 @@ class AdminOverviewContainer extends Component {
     return (
  
         <div className='admin-container' style={this.state.darkMode ? darkModeStyles : null}>
-          {/* <Header admin={true}/> */}
           <div className='admin-title'>
             <h3>{this.state.renderClick}</h3>
           </div>

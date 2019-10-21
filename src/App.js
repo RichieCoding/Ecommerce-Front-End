@@ -31,7 +31,8 @@ class App extends Component {
   componentDidMount() {
     this.fetchProducts();
     // Fetch Current User Information
-    fetch("http://localhost:3000/profile", {
+    if (localStorage.token) {
+      fetch("https://shoppie-final-backend.herokuapp.com/profile", {
       headers: {
         Authorization: localStorage.token
       }
@@ -47,11 +48,12 @@ class App extends Component {
           });
         }
       });
+    }
   }
 
   // Fetch all products
   fetchProducts = () => {
-    fetch("http://localhost:3000/products")
+    fetch("https://shoppie-final-backend.herokuapp.com/products")
       .then(resp => resp.json())
       .then(parsedData => {
         this.setState({
@@ -62,7 +64,7 @@ class App extends Component {
 
   // Fetch Cart Items
   fetchCartItems = id => {
-    fetch(`http://localhost:3000/cart_items/${id}`, {
+    fetch(`https://shoppie-final-backend.herokuapp.com/cart_items/${id}`, {
       headers: {
         Authorization: localStorage.token
       }

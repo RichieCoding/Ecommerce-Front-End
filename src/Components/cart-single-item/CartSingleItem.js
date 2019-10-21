@@ -10,7 +10,7 @@ class CartSingleItem extends React.Component {
 
   //Remove Product from cart
   handleRemove = () => {
-    fetch(`http://localhost:3000/cart_items/${this.props.itemDetails.id}`, {
+    fetch(`https://shoppie-final-backend.herokuapp.com/cart_items/${this.props.itemDetails.id}`, {
       method: "DELETE"
     })
     .then(this.props.renderCartPage())
@@ -28,7 +28,7 @@ class CartSingleItem extends React.Component {
 
   // Add count to quantity
   handleAdd = () => {
-    fetch(`http://localhost:3000/cart_items/${this.props.itemDetails.id}`, {
+    fetch(`https://shoppie-final-backend.herokuapp.com/cart_items/${this.props.itemDetails.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,7 @@ class CartSingleItem extends React.Component {
   };
 
   handleSubtract = () => {
-    fetch(`http://localhost:3000/cart_items/${this.props.itemDetails.id}`, {
+    fetch(`https://shoppie-final-backend.herokuapp.com/cart_items/${this.props.itemDetails.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ class CartSingleItem extends React.Component {
         <div className='product-info'>
           <div className='product-name product-text'>
             <p>{name}</p>
-            <p onClick={this.handleRemove}>X</p>
+            <p onClick={this.handleRemove} className='delete-cart-item'>X</p>
           </div>
           <div className='product-size product-text'>
             <p>{`Size: ${size}`}</p>
@@ -95,9 +95,9 @@ class CartSingleItem extends React.Component {
           </div>
           <div className='product-price product-text'>
             <div className='product-increment'>
-              <p onClick={this.handleSubtract}>-</p>
+              <p className='add-subtract' onClick={this.handleSubtract}>-</p>
               <p>{this.state.quantity}</p>
-              <p onClick={this.handleAdd}>+</p>
+              <p className='add-subtract' onClick={this.handleAdd}>+</p>
             </div>
             <p>{`$${this.state.price * this.state.quantity}`}</p>
           </div>
