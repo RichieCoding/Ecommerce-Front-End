@@ -37,6 +37,7 @@ class CartPage extends Component {
   };
 
   componentDidMount() {
+    if (localStorage.token) {
     fetch("https://shoppie-final-backend.herokuapp.com/profile", {
       headers: {
         Authorization: localStorage.token
@@ -48,6 +49,7 @@ class CartPage extends Component {
           this.fetchCart(parsedData.id);
         }
       });
+    }
   }
 
   fetchCart = id => {
@@ -104,7 +106,7 @@ class CartPage extends Component {
     return (
       <>
         <div className='cart-page'>
-          <div>
+          <div className='cart-items'>
             {this.state.cartTotal === 0 ? <p className='empty-cart'>Your Cart is Empty</p> : null }
             {renderCartItems}
           </div>
