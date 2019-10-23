@@ -9,7 +9,6 @@ class ProductCard extends Component {
   }
 
   componentDidMount() {
-    debugger
     const { quantity } = this.props.product;
     if (quantity === 0) {
       this.setState({
