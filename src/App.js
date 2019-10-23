@@ -149,6 +149,7 @@ class App extends Component {
             )}
           />
           <Route
+            exact
             path='/shop'
             render={routerProps => (
               <ShopProductPage
@@ -161,7 +162,6 @@ class App extends Component {
             )}
           />
           <Route
-            exact
             path='/shop/:id'
             render={routerProps => (
               <SingleProductPage
