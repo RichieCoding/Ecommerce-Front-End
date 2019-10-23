@@ -2,21 +2,34 @@ nav {
   grid-area: nav;
   display: flex;
   justify-content: space-between;
-  // background: rgba(37, 63, 119, 0.932);
-  padding: 20px;
+  align-items: center;
+  padding: 20px 0;
   border-bottom: 1px solid black;
   width: 90%;
   margin: 0 auto;
   position: relative;
+  background: transparent;
 
   h1 {
     color: black;
     font-size: 1.5em;
   }
 
-  .shop-title {
+  .logo {
+    font-family: 'Shrikhand', cursive;
+    font-size: 1.8rem;
+    color: #aef8dc;
     a {
-      color: black;
+      color: rgb(157,208,195);
+    }
+  }
+
+  .main-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    &:hover {
+      color: rgb(157,208,195);
     }
   }
 
@@ -24,38 +37,31 @@ nav {
     display: inline-block;
     color: black;
     margin-left: 20px;
-    font-size: 1.3em;
+    font-size: 1em;
+    text-transform: uppercase;
 
     a {
       color: black;
+      &:hover {
+        color: rgb(157,208,195);
+      }
     }
 
-    a:visited {
-      color: black;
-    }
+    
   }
 
   .cart-text {
-    font-size: 1em;
-
     a {
       border: 1px solid black;
       padding: 10px;
       border-radius: 20px;
       margin-left: 2px;
+      background: transparent;
 
       &:hover {
         background: rgb(39, 39, 39);
         color: white;
       }
     }
-  }
-
-  .logo {
-    font-size: 1.3em;
-    position: absolute;
-    text-align: center;
-    top: 15px;
-    right: 50%;
   }
 }
