@@ -19,13 +19,31 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: rgba(204, 204, 204, 0.61);
+      background: rgba(100, 236, 202, 0.801);
       text-align: center;
       bottom: 0;
       width: 100%;
       height: 50px;
+      z-index: 99;
+      animation: fadeUp .5s ease-out;
+      color: rgba(0, 0, 0, 0.781);
+      &:hover {
+        background: rgb(100, 236, 202);
+        color: black;
+        cursor: pointer;
+      }
     }
   }
 
   
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

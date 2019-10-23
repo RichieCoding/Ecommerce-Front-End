@@ -125,7 +125,7 @@ class CartPage extends Component {
               <p>${this.state.cartTotal}</p>
             </div>
             <form className='checkout'>
-              <input type='submit' onClick={this.handleCheckout} value='Submit'/>
+              <input type='submit' onClick={this.handleCheckout} value='Checkout'/>
             </form>
           </div>
         </div>
