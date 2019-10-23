@@ -32,7 +32,7 @@
       font-size: 1.4em;
       margin-top: 20px;
       padding-bottom: 30px;
-      border-bottom: 1px solid rgb(216, 216, 216)
+      border-bottom: 1px solid rgb(216, 216, 216);
     }
 
     .cart-total {
@@ -46,18 +46,20 @@
     .checkout {
       margin-top: 1.5em;
       margin-bottom: 50px;
-      
-      button {
+
+      input {
         font-size: 1.2em;
         height: 2.6em;
         background: rgb(63, 63, 63);
         color: white;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border-radius: 0;
 
         &:hover {
           background: rgb(39, 39, 39);
         }
       }
-
     }
   }
 }
