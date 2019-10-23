@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./header.styles.scss";
+import HamburgerMenu from "react-hamburger-menu";
 
 class Header extends Component {
   state = {
@@ -26,7 +27,7 @@ class Header extends Component {
     return (
       <nav>
         <h3 className='logo'>
-          <Link to='/'>Shoppie</Link>
+          <Link to='/' onClick={this.props.handleMenuClose}>Shoppie</Link>
         </h3>
         <ul className='main-nav'>
           <li>
@@ -50,10 +51,19 @@ class Header extends Component {
             </li>
           ) : null}
         </ul>
-        <ul>
+        <ul className='menu-cart'>
           <li className='cart-text'>
-            <Link to='/cart'>{`Cart: ${this.addTotal()}`}</Link>{" "}
+            <Link to='/cart' onClick={this.props.handleMenuClose}>{`Cart: ${this.addTotal()}`}</Link>{" "}
           </li>
+          <div className='hamburger-menu'>
+            <HamburgerMenu
+              isOpen={this.props.isOpen}
+              menuClicked={this.props.handleMenuOpen}
+              width={25}
+              height={18}
+              color={"black"}
+            />
+          </div>
         </ul>
       </nav>
     );
