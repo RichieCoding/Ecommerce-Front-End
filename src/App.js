@@ -10,6 +10,7 @@ import CartPage from "./Containers/cart-page/CartPage";
 import { Switch, Route } from "react-router-dom";
 import ShopProductPage from "./Containers/shop-product-page/ShopProductPage";
 import SingleProductPage from "./Containers/single-product-page/SingleProductPage";
+import HeaderMobile from "./Components/header-mobile/HeaderMobile";
 
 class App extends Component {
   state = {
@@ -19,7 +20,8 @@ class App extends Component {
       admin: false
     },
     cart: [],
-    cartId: ''
+    cartId: "",
+    menuOpen: false
   };
 
   redirect = page => {
@@ -28,26 +30,40 @@ class App extends Component {
     });
   };
 
+  // Handles header mobile open and close
+  handleMenuOpen = () => {
+    this.setState(prevState => {
+      return { menuOpen: !prevState.menuOpen };
+    });
+  };
+
+  // For header to close out header mobile when cart is clicked
+  handleMenuClose = () => {
+    this.setState({
+      menuOpen: false
+    })
+  }
+
   componentDidMount() {
     this.fetchProducts();
     // Fetch Current User Information
     if (localStorage.token) {
       fetch("https://shoppie-final-backend.herokuapp.com/profile", {
-      headers: {
-        Authorization: localStorage.token
-      }
-    })
-      .then(resp => resp.json())
-      .then(parsedData => {
-        if (localStorage.token) {
-          this.fetchCartItems(parsedData.id);
-
-          this.setState({
-            currentUser: parsedData,
-            cartId: parsedData.cart.id
-          });
+        headers: {
+          Authorization: localStorage.token
         }
-      });
+      })
+        .then(resp => resp.json())
+        .then(parsedData => {
+          if (localStorage.token) {
+            this.fetchCartItems(parsedData.id);
+
+            this.setState({
+              currentUser: parsedData,
+              cartId: parsedData.cart.id
+            });
+          }
+        });
     }
   }
 
@@ -94,19 +110,29 @@ class App extends Component {
   updateCartToZero = () => {
     this.setState({
       cart: []
-    })
-  }
+    });
+  };
 
   render() {
     return (
       <>
         <Header
-          cart={this.state.cart}
-          setCartToZero={this.setCartToZero}
-          handleCartFetch={this.handleCartFetch}
-          currentUser={this.state.currentUser}
+          cart={this.state.cart} // Checks what is in cart
+          setCartToZero={this.setCartToZero} // Sets cart to zero when you log out
+          handleCartFetch={this.handleCartFetch} // Fetches cart from database
+          currentUser={this.state.currentUser} // Gets current user 
+          handleMenuOpen={this.handleMenuOpen} // Handles menu opening and closing for hamburger menu
+          handleMenuClose={this.handleMenuClose} // Closes menu when you click on cart and logo
+          isOpen={this.state.menuOpen} // Checks to see if the menu is open
         />
         <Switch>
+          {this.state.menuOpen ? (
+            <HeaderMobile
+              menuClicked={this.handleMenuOpen}
+              setCartToZero={this.setCartToZero}
+              handleCartFetch={this.handleCartFetch}
+            />
+          ) : null}
           <Route
             exact
             path='/'
