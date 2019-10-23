@@ -119,7 +119,7 @@ class CartPage extends Component {
               <p>${this.state.cartTotal}</p>
             </div>
             <div className='checkout'>
-              <button onClick={this.handleCheckout}>Checkout</button>
+              <button type='button' onClick={this.handleCheckout}>Checkout</button>
             </div>
           </div>
         </div>
