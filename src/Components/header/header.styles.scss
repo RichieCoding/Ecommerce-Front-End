@@ -26,6 +26,7 @@ nav {
 
   .main-nav {
     position: absolute;
+    display: none;
     left: 50%;
     transform: translateX(-50%);
     &:hover {
@@ -50,18 +51,38 @@ nav {
     
   }
 
-  .cart-text {
-    a {
-      border: 1px solid black;
-      padding: 10px;
-      border-radius: 20px;
-      margin-left: 2px;
-      background: transparent;
+  .menu-cart {
+    display: flex;
+    justify-content: space-between;
 
-      &:hover {
-        background: rgb(39, 39, 39);
-        color: white;
+    .cart-text {
+      margin-right: 15px;
+      a {
+        border: 1px solid black;
+        padding: 10px;
+        border-radius: 20px;
+        margin-left: 2px;
+        background: transparent;
+  
+        &:hover {
+          background: rgb(39, 39, 39);
+          color: white;
+        }
       }
+    }
+  }
+
+
+}
+
+@media (min-width: 800px) {
+  nav {
+    .main-nav {
+      display: block;
+    }
+
+    .hamburger-menu {
+      display: none;
     }
   }
 }
