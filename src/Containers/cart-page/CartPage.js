@@ -15,7 +15,7 @@ class CartPage extends Component {
   cartTotal = () => {
     let total = 0;
     this.state.currentCart1.map(cartProduct => {
-     total += cartProduct.products.price * cartProduct.count;
+      total += cartProduct.products.price * cartProduct.count;
     });
     this.setState({
       cartTotal: total
@@ -26,29 +26,29 @@ class CartPage extends Component {
     this.setState({
       cartTotal: this.state.cartTotal + addPrice
     });
-    this.props.handleCartFetch()
+    this.props.handleCartFetch();
   };
 
   cartTotalSubtract = subtractPrice => {
     this.setState({
       cartTotal: this.state.cartTotal - subtractPrice
     });
-    this.props.handleCartFetch()
+    this.props.handleCartFetch();
   };
 
   componentDidMount() {
     if (localStorage.token) {
-    fetch("https://shoppie-final-backend.herokuapp.com/profile", {
-      headers: {
-        Authorization: localStorage.token
-      }
-    })
-      .then(resp => resp.json())
-      .then(parsedData => {
-        if (localStorage.token) {
-          this.fetchCart(parsedData.id);
+      fetch("https://shoppie-final-backend.herokuapp.com/profile", {
+        headers: {
+          Authorization: localStorage.token
         }
-      });
+      })
+        .then(resp => resp.json())
+        .then(parsedData => {
+          if (localStorage.token) {
+            this.fetchCart(parsedData.id);
+          }
+        });
     }
   }
 
@@ -66,48 +66,54 @@ class CartPage extends Component {
         });
         this.cartTotal();
       });
-      this.props.handleCartFetch()
+    this.props.handleCartFetch();
   };
 
   renderCartPage = () => {
-    this.componentDidMount()
-  }
+    this.componentDidMount();
+  };
 
-  handleCheckout = () => {
-    fetch('https://shoppie-final-backend.herokuapp.com/checkout', {
-      method: "POST",
-      headers: {
-        Authorization: localStorage.token
-      }
-    })
-    .then(() => this.setState({
-      currentCart1: [],
-      cartTotal: 0
-    }))
-    this.props.updateCartToZero()
-    this.props.updateQuantity()
-  }
-
-  
+  handleCheckout = (e) => {
+    e.preventDefault()
+    if (this.state.cartTotal !== 0) {
+      fetch("https://shoppie-final-backend.herokuapp.com/checkout", {
+        method: "POST",
+        headers: {
+          Authorization: localStorage.token
+        }
+      }).then(() =>
+        this.setState({
+          currentCart1: [],
+          cartTotal: 0
+        })
+      );
+      this.props.updateCartToZero();
+      this.props.updateQuantity();
+    }
+  };
 
   render() {
-    const renderCartItems = this.state.currentCart1.sort((a,b) => a.id - b.id).map(item => {
-      return (
-        <CartSingleItem
-          cartTotalAdd={this.cartTotalAdd}
-          cartTotalSubtract={this.cartTotalSubtract}
-          cartTotal={this.cartTotal}
-          itemDetails={item}
-          renderCartPage={this.renderCartPage}
-          handleCartFetch={this.props.handleCartFetch}
-        />
-      );
-    });
+    const renderCartItems = this.state.currentCart1
+      .sort((a, b) => a.id - b.id)
+      .map(item => {
+        return (
+          <CartSingleItem
+            cartTotalAdd={this.cartTotalAdd}
+            cartTotalSubtract={this.cartTotalSubtract}
+            cartTotal={this.cartTotal}
+            itemDetails={item}
+            renderCartPage={this.renderCartPage}
+            handleCartFetch={this.props.handleCartFetch}
+          />
+        );
+      });
     return (
       <>
         <div className='cart-page'>
           <div className='cart-items'>
-            {this.state.cartTotal === 0 ? <p className='empty-cart'>Your Cart is Empty</p> : null }
+            {this.state.cartTotal === 0 ? (
+              <p className='empty-cart'>Your Cart is Empty</p>
+            ) : null}
             {renderCartItems}
           </div>
           <div className='checkout'>
@@ -118,9 +124,9 @@ class CartPage extends Component {
               <p>Order Total</p>
               <p>${this.state.cartTotal}</p>
             </div>
-            <div className='checkout'>
-              <button type='button' onClick={this.handleCheckout}>Checkout</button>
-            </div>
+            <form className='checkout'>
+              <input type='submit' onClick={this.handleCheckout} value='Submit'/>
+            </form>
           </div>
         </div>
       </>
