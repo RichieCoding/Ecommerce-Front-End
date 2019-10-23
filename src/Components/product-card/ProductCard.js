@@ -3,32 +3,29 @@ import "./product-card.styles.scss";
 import { Link } from "react-router-dom";
 
 class ProductCard extends Component {
-  state={
+  state = {
     hover: false,
-    status: ''
-  }
+    status: "Add to cart"
+  };
 
   componentDidMount() {
     const { quantity } = this.props.product;
     if (quantity === 0) {
       this.setState({
-        status: 'SOLD OUT'
-      })
-    } else if (this.props.cart.includes(this.props.product.id)) {
-      this.setState({
-        status: 'Added'
-      })
-    } else {
-      this.setState({
-        status: 'Add to cart'
-      })
+        status: "SOLD OUT"
+      });
+    } else if (this.props.cart.length !== 0) {
+      for (let i = 0; i < this.props.cart.length; i++) {
+        if (this.props.cart[i].product_id === this.props.product.id) {
+          this.setState({
+            status: "Added"
+          });
+        }
+      }
     }
   }
 
   addToCart = () => {
-    this.setState({
-      status: 'Added'
-    })
     const findProduct = this.props.cart.find(cartItem => {
       return cartItem.product_id === this.props.product.id;
     });
@@ -49,30 +46,45 @@ class ProductCard extends Component {
         })
       })
         .then(resp => resp.json())
-        .then(this.props.handleCartFetch);
+        .then(res => {
+          this.setState({
+            status: "Added"
+          });
+          this.props.handleCartFetch();
+        });
     }
-    this.componentDidMount()
+    this.componentDidMount();
   };
 
   handleMouseEnter = () => {
     this.setState({
       hover: true
-    })
-  }
+    });
+  };
 
   handleMouseLeave = () => {
     this.setState({
       hover: false
-    })
-  }
+    });
+  };
 
-  handleAddToCartButton = () => {
+  handleStockInfo = () => {
     const { quantity } = this.props.product;
     if (quantity === 0) {
       return <h4>SOLD OUT</h4>;
     } else if (quantity > 0 && quantity <= 5) {
+      return <h4>Low Stock: {quantity}</h4>;
+    }
+  };
+
+  renderAddToCartBtn = () => {
+    if (this.state.status === "SOLD OUT" || this.state.status === "Added") {
+      return <p className='hover-add-to-cart'>{this.state.status}</p>;
+    } else {
       return (
-          <h4>Low Stock: {quantity}</h4>
+        <button onClick={this.addToCart} className='hover-add-to-cart'>
+          {this.state.status}
+        </button>
       );
     }
   };
@@ -80,25 +92,29 @@ class ProductCard extends Component {
   render() {
     return (
       <div className='product-card'>
-        {/* <Link to={`/shop/${props.product.id}`}> */}
-        <div onMouseEnter = {this.handleMouseEnter}
-            onMouseLeave = {this.handleMouseLeave} className='product-image'>
-          <img 
-            className='product-img'
-            src={this.props.product.imageUrl}
-            alt='product'
-          />
-          {this.state.hover || this.state.status === "SOLD OUT" ? <button onClick={this.addToCart} className='hover-add-to-cart'>{this.state.status}</button> : null}
-          {/* <div className='hover-add-to-cart'>
-            <h3>Add to cart</h3>
-          </div> */}
+        <div
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
+          className='product-image'
+        >
+          <Link to={`/shop/${this.props.product.id}`}>
+            <img
+              className='product-img'
+              src={this.props.product.imageUrl}
+              alt='product'
+            />
+          </Link>
+          {this.state.hover ||
+          this.state.status === "SOLD OUT" ||
+          this.state.status === "Added"
+            ? this.renderAddToCartBtn()
+            : null}
         </div>
-        {/* </Link> */}
+
         <div className='product-info'>
           <p>{this.props.product.name}</p>
           <p>${this.props.product.price}.00</p>
-          {this.handleAddToCartButton()}
-          {/* <button onClick={this.addToCart}>Add To Cart</button> */}
+          {this.handleStockInfo()}
         </div>
       </div>
     );
