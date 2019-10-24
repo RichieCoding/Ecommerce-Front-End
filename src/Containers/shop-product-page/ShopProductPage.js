@@ -10,7 +10,6 @@ class ShopProductPage extends Component {
         <ProductCard
           cart={this.props.cart}
           cartId={this.props.cartId}
-          addToCart={this.addToCart}
           product={product}
           handleCartFetch={this.props.handleCartFetch}
         />
