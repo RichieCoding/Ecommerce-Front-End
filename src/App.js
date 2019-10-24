@@ -170,6 +170,8 @@ class App extends Component {
                 updateQuantity={this.updateQuantity}
                 currentUser={this.state.currentUser}
                 cart={this.state.cart}
+                cartId={this.state.cartId}
+                handleCartFetch={this.handleCartFetch} // Fetches cart from database
               />
             )}
           />

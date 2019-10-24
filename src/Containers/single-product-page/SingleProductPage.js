@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 class SingleProductPage extends Component {
   state = {
     product: {},
-    sizeLetter: ""
+    sizeLetter: "",
+    status: "Add to cart"
   };
 
   componentDidMount() {
@@ -13,12 +14,58 @@ class SingleProductPage extends Component {
     fetch(`https://shoppie-final-backend.herokuapp.com/products/${productId}`)
       .then(res => res.json())
       .then(parsedData => {
+        console.log(parsedData);
         this.setState({
           product: parsedData,
           sizeLetter: parsedData.size.charAt(0)
         });
+        const { quantity } = parsedData;
+        if (quantity === 0) {
+          this.setState({
+            status: "SOLD OUT"
+          });
+        } else if (this.props.cart.length !== 0) {
+          for (let i = 0; i < this.props.cart.length; i++) {
+            if (this.props.cart[i].product_id === this.state.product.id) {
+              this.setState({
+                status: "Added"
+              });
+            }
+          }
+        }
       });
   }
+
+  addToCart = () => {
+    const findProduct = this.props.cart.find(cartItem => {
+      return cartItem.product_id === this.state.product.id;
+    });
+    if (findProduct) {
+      console.log(findProduct);
+    } else {
+      console.log("not in cart");
+      fetch(`https://shoppie-final-backend.herokuapp.com/cart_items`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: localStorage.token
+        },
+        body: JSON.stringify({
+          cart_id: this.props.cartId,
+          product_id: this.state.product.id
+        })
+      })
+        .then(resp => resp.json())
+        .then(res => {
+          this.setState({
+            status: "Added"
+          });
+          this.props.handleCartFetch();
+        });
+    }
+    // this.componentDidMount();
+  };
 
   renderSizeLetter = () => {
     console.log(this.state.sizeLetter);
@@ -59,9 +106,8 @@ class SingleProductPage extends Component {
               ></div>
             </div>
             <p className='color-text'>{color}</p>
+            <hr />
           </div>
-
-          <hr />
 
           <div className='size-wrapper'>
             <p className='size-text'>{size}</p>
@@ -73,9 +119,13 @@ class SingleProductPage extends Component {
           </div>
 
           <div className='add-to-cart-btn'>
-            <button onClick={this.addToCart} className='add-to-cart'>
-              Add to cart
-            </button>
+            {this.state.status === "SOLD OUT" ? (
+              <button className='add-to-cart'>{this.state.status}</button>
+            ) : (
+              <button onClick={this.addToCart} className='add-to-cart'>
+                {this.state.status}
+              </button>
+            )}
           </div>
 
           <div className='product-description'>
