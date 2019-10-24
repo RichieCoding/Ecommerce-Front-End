@@ -34,53 +34,56 @@ class SingleProductPage extends Component {
       size
     } = this.state.product;
     return (
-      <div className='single-product-page'>
-        <Link to='/shop'>
-          <p className='back-btn'>Back to products</p>
-        </Link>
-        <div className='product-name'>
-          <h3>{name}</h3>
+      <>
+        <div className='back-btn-container'>
+          <Link to='/shop'>
+            <p className='back-btn'>Back to products</p>
+          </Link>
         </div>
 
-        <div className='product-price'>
-          <h3>{`$${price}.00`}</h3>
-        </div>
-
-        <div className='product-image'>
-          <img src={imageUrl} alt='product' />
-        </div>
-
-        <div className='color-wrapper'>
-          <div className='color-container'>
-            <div
-              className='product-color'
-              style={{ background: `${color}` }}
-            ></div>
+        <div className='single-product-page'>
+          <div className='product-container'>
+            <h3 className='product-name'>{name}</h3>
+            <h3 className='product-price'>{`$${price}.00`}</h3>
           </div>
-          <p className='color-text'>{color}</p>
-        </div>
 
-        <hr />
+          <div className='product-image'>
+            <img src={imageUrl} alt='product' />
+          </div>
 
-        <p>{size}</p>
-        <div className='product-size'>
-          <div className='size-container'>
-            <p className='size-letter'>{this.state.sizeLetter}</p>
+          <div className='color-wrapper'>
+            <div className='color-container'>
+              <div
+                className='product-color'
+                style={{ background: `${color}` }}
+              ></div>
+            </div>
+            <p className='color-text'>{color}</p>
+          </div>
+
+          <hr />
+
+          <div className='size-wrapper'>
+            <p className='size-text'>{size}</p>
+            <div className='product-size'>
+              <div className='size-container'>
+                <p className='size-letter'>{this.state.sizeLetter}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className='add-to-cart-btn'>
+            <button onClick={this.addToCart} className='add-to-cart'>
+              Add to cart
+            </button>
+          </div>
+
+          <div className='product-description'>
+            <p className='detail-title'>Details</p>
+            <p className='detail-description'>{description}</p>
           </div>
         </div>
-
-        <div className='add-to-cart-btn'>
-          <button onClick={this.addToCart} className='add-to-cart'>
-            Add to cart
-          </button>
-        </div>
-
-        <div className='product-description'>
-          <p className='detail-title'>Details</p>
-          <p className='detail-description'>{description}</p>
-        </div>
-        
-      </div>
+      </>
     );
   }
 }
