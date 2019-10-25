@@ -40,9 +40,7 @@ class SingleProductPage extends Component {
     const findProduct = this.props.cart.find(cartItem => {
       return cartItem.product_id === this.state.product.id;
     });
-    if (findProduct) {
-      console.log(findProduct);
-    } else {
+    if (!findProduct) {
       console.log("not in cart");
       fetch(`https://shoppie-final-backend.herokuapp.com/cart_items`, {
         method: "POST",
@@ -64,7 +62,6 @@ class SingleProductPage extends Component {
           this.props.handleCartFetch();
         });
     }
-    // this.componentDidMount();
   };
 
   renderSizeLetter = () => {
