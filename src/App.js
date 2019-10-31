@@ -16,6 +16,7 @@ class App extends Component {
   state = {
     page: "login",
     products: [],
+    productsLoaded: false,
     currentUser: {
       admin: false
     },
@@ -60,7 +61,7 @@ class App extends Component {
 
             this.setState({
               currentUser: parsedData,
-              cartId: parsedData.cart.id
+              cartId: parsedData.cart.id,
             });
           }
         });
@@ -73,7 +74,8 @@ class App extends Component {
       .then(resp => resp.json())
       .then(parsedData => {
         this.setState({
-          products: parsedData
+          products: parsedData,
+          productsLoaded: true
         });
       });
   };
@@ -154,6 +156,7 @@ class App extends Component {
             render={routerProps => (
               <ShopProductPage
                 products={this.state.products}
+                productsLoaded={this.state.productsLoaded}
                 handleCartFetch={this.handleCartFetch}
                 cart={this.state.cart}
                 cartId={this.state.cartId}
@@ -182,6 +185,7 @@ class App extends Component {
                 {...routerProps}
                 products={this.state.products}
                 updateQuantity={this.updateQuantity}
+                productsLoaded={this.state.productsLoaded}
                 currentUser={this.state.currentUser}
                 cart={this.state.cart}
               />
