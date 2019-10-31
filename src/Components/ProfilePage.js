@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import Login from "../Containers/login-page/LoginPage";
 import Profile from "./Profile";
 import UserProfile from "./user-profile/UserProfile";
+import Spinner from "./Spinner/Spinner";
 
 class ProfilePage extends Component {
   state = {
     currentUser: {},
-    usersOrders: []
+    usersOrders: [],
+    loaded: false
   };
 
   componentDidMount() {
@@ -42,7 +44,8 @@ class ProfilePage extends Component {
         .then(res => res.json())
         .then(parsedData =>
           this.setState({
-            currentUser: parsedData
+            currentUser: parsedData,
+            loaded: true
           })
         )
         .then(() => this.fetchAllUserOrders());
@@ -53,6 +56,7 @@ class ProfilePage extends Component {
 
   render() {
     const { admin } = this.state.currentUser;
+    if (!this.state.loaded) return <Spinner /> // Checks to see if server is up and running
     if (admin && localStorage.token) {
       return (
         <AdminOverviewContainer
