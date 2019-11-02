@@ -23,3 +23,7 @@ Open [http://localhost:3000] or if backend is running [http://localhost:30001] t
 * Ruby on Rails 
 * PostgreSQL
 * JSON Web Token
+
+## `Demo`
+
+http://shoppie-front-end.herokuapp.com/
