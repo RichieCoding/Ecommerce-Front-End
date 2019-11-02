@@ -38,6 +38,7 @@
       margin-bottom: 2em;
       border: none;
       border-bottom: 1px solid black;
+
     }
 
     .empty-input {
@@ -46,6 +47,12 @@
 
     .submit {
       border: 1px solid black;
+
+      &:hover {
+        cursor: pointer;
+        background: black;
+        color: white;
+      }
     }
 
 
