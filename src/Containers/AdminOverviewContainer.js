@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import OrderContainer from "./OrderContainer";
 import InventoryContainer from "./InventoryContainer";
 import AdminMenu from "../Components/AdminMenu";
-import Header from "../Components/header/Header";
 import AllUsersContainer from "./AllUsersContainer";
 import SettingsContainer from './settings-page/SettingsContainer';
 
@@ -48,7 +47,6 @@ class AdminOverviewContainer extends Component {
 
   render() {
     return (
- 
         <div className='admin-container' style={this.state.darkMode ? darkModeStyles : null}>
           <div className='admin-title'>
             <h3>{this.state.renderClick}</h3>
@@ -56,7 +54,6 @@ class AdminOverviewContainer extends Component {
           <AdminMenu handleClick={this.handleClick} />
           {this.renderClickedComponent()}
         </div>
-
     );
   }
 }
