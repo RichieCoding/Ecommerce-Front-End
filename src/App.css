@@ -295,7 +295,7 @@ a {
   top: 40%;
   left: 35%;
   width: 40%;
-  height: 40%;
+  height: 50%;
   z-index: 999;
   overflow: scroll;
 }
