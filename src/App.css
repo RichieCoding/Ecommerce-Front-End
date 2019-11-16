@@ -26,24 +26,11 @@ a {
 }
 
 /************************* 
-    Header Component
-*************************/
-
-
-nav h1 {
-  color: white;
-}
-nav {
-  grid-area: nav;
-}
-
-
-/************************* 
     Admin Container
 *************************/
 
 .admin-container {
-  height: 93.6vh;
+  height: 90vh;
   background: rgb(255, 255, 255);
   overflow: scroll;
   display: grid;
@@ -143,6 +130,7 @@ nav {
 
 #add-product-btn:hover {
   transform: scale(1.04);
+  cursor: pointer;
 }
 
 
@@ -183,8 +171,14 @@ nav {
   outline: none;
 }
 
+#single-user-edit-btn:hover {
+  background: green;
+  cursor: pointer;
+}
+
 .single-user button:hover {
   background: rgb(0, 0, 0);
+  cursor: pointer;
 }
 
 #product-edit-btn {
@@ -193,6 +187,7 @@ nav {
 
 #product-edit-btn:hover {
   background: rgb(29, 161, 62);
+  cursor: pointer;
 }
 
 #product-remove-btn:hover {
