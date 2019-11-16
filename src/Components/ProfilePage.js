@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import AdminOverviewContainer from "../Containers/AdminOverviewContainer";
-import { Link } from "react-router-dom";
 import Login from "../Containers/login-page/LoginPage";
-import Profile from "./Profile";
 import UserProfile from "./user-profile/UserProfile";
 import Spinner from "./Spinner/Spinner";
 
