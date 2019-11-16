@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import UserForms from "./UserForms";
 import UserFormContainer from '../Containers/user-form-container/UserFormContainer';
-import ProductFormContainer from '../Containers/ProductFormContainer'
 
 class SingleUser extends Component {
   state = {
