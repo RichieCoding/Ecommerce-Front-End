@@ -33,6 +33,14 @@
         cursor: pointer;
       }
     }
+
+    .hover-sold-out {
+      background: rgba(243, 78, 78, 0.651);
+
+      &:hover {
+        background: rgba(243, 78, 78, 0.651);
+      }
+    }
   }
 
   

@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import "./single-product-page.styles.scss";
 import { Link } from "react-router-dom";
+import Spinner from "../../Components/Spinner/Spinner";
 
 class SingleProductPage extends Component {
   state = {
     product: {},
     sizeLetter: "",
-    status: "Add to cart"
+    status: "Add to cart",
+    loading: true
   };
 
   componentDidMount() {
@@ -17,7 +19,8 @@ class SingleProductPage extends Component {
         console.log(parsedData);
         this.setState({
           product: parsedData,
-          sizeLetter: parsedData.size.charAt(0)
+          sizeLetter: parsedData.size.charAt(0),
+          loading: false
         });
         const { quantity } = parsedData;
         if (quantity === 0) {
@@ -69,6 +72,7 @@ class SingleProductPage extends Component {
   };
 
   render() {
+    if (this.state.loading) return <Spinner />
     const {
       name,
       color,
