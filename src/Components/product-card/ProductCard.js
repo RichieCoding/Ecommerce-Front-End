@@ -79,7 +79,7 @@ class ProductCard extends Component {
 
   renderAddToCartBtn = () => {
     if (this.state.status === "SOLD OUT" || this.state.status === "Added") {
-      return <p className='hover-add-to-cart'>{this.state.status}</p>;
+      return <p className={this.state.status === "SOLD OUT" ? 'hover-add-to-cart hover-sold-out' : 'hover-add-to-cart'}>{this.state.status}</p>;
     } else {
       return (
         <button onClick={this.addToCart} className='hover-add-to-cart'>
