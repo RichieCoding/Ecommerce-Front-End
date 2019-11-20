@@ -17,15 +17,6 @@ class CartSingleItem extends React.Component {
     .then(this.props.handleCartFetch())
   }
 
-  // deleteProduct = () => {
-  //   fetch(`http://localhost:3000/products/${this.state.deleteProductId}`, {
-  //     method: "DELETE"
-  //   }).then(parsedData => {
-  //     this.props.updateQuantity(parsedData);
-  //     this.handleDeleteClick();
-  //   });
-  // };
-
   // Add count to quantity
   handleAdd = () => {
     fetch(`https://shoppie-final-backend.herokuapp.com/cart_items/${this.props.itemDetails.id}`, {
