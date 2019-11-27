@@ -1,15 +1,15 @@
-import React from 'react';
-import './shop-home-page.styles.scss';
-import Shoppie from '../../assets/images/ShoppieBanner.png';
-import { Link } from 'react-router-dom';
-
+import React from "react";
+import "./shop-home-page.styles.scss";
+// import { Link } from "react-router-dom";
+import { Banner } from "../../Components/banner/Banner";
 
 const ShopHomePage = () => (
   <div className='shop-home-page'>
-    <div className='banner'>
-      <img src={Shoppie} alt="banner"/>
-    </div>
+    <Banner title='New Arrivals' button='SHOP' />
+    {/* <div className='featured-items'>
+      <h3>Featured Items</h3>
+    </div> */}
   </div>
-)
+);
 
-export default ShopHomePage
+export default ShopHomePage;

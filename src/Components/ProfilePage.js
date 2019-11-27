@@ -4,6 +4,8 @@ import Login from "../Containers/login-page/LoginPage";
 import UserProfile from "./user-profile/UserProfile";
 import Spinner from "./Spinner/Spinner";
 
+import URL from './URL'
+
 class ProfilePage extends Component {
   state = {
     currentUser: {},
@@ -19,7 +21,7 @@ class ProfilePage extends Component {
   }
 
   fetchAllUserOrders = () => {
-    fetch(`https://shoppie-final-backend.herokuapp.com/users/${this.state.currentUser.id}`, {
+    fetch(`${URL}/users/${this.state.currentUser.id}`, {
       headers: {
         Authorization: localStorage.token
       }
@@ -34,7 +36,7 @@ class ProfilePage extends Component {
 
   checkForToken = () => {
     if (localStorage.token) {
-      fetch("https://shoppie-final-backend.herokuapp.com/profile", {
+      fetch(`${URL}/profile`, {
         headers: {
           Authorization: localStorage.token
         }

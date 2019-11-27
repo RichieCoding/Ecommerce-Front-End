@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./customer-single-order-preview.styles.scss";
 import AdminShowOrder from "../admin-show-order/AdminShowOrder";
+import URL from '../URL'
 
 class CustomerSingleOrderPreview extends Component {
   state = {
@@ -10,7 +11,7 @@ class CustomerSingleOrderPreview extends Component {
 
   handleClick = () => {
     console.log(this.props.orderId);
-    fetch(`https://shoppie-final-backend.herokuapp.com/orders/${this.props.orderId}`, {
+    fetch(`${URL}/orders/${this.props.orderId}`, {
       headers: {
         Authorization: localStorage.token
       }

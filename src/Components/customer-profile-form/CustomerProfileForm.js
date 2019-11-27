@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./customer-profile-form.styles.scss";
+import URL from '../../Components/URL'
 
 class CustomerProfileForm extends Component {
   state = {
@@ -18,7 +19,7 @@ class CustomerProfileForm extends Component {
   };
 
   componentDidMount() {
-    fetch("https://shoppie-final-backend.herokuapp.com/profile", {
+    fetch(`${URL}/profile`, {
       headers: {
         Authorization: localStorage.token
       }
@@ -33,7 +34,7 @@ class CustomerProfileForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    fetch(`https://shoppie-final-backend.herokuapp.com/users/${this.state.id}`, {
+    fetch(`${URL}/users/${this.state.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

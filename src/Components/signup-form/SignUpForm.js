@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import URL from '../URL'
 
 class SignUpForm extends Component {
   state = {
@@ -13,7 +14,7 @@ class SignUpForm extends Component {
     e.preventDefault();
     const { first_name, username, email, password } = this.state;
     if ((first_name, username, email, password !== "")) {
-      fetch("https://shoppie-final-backend.herokuapp.com/users", {
+      fetch(`${URL}/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

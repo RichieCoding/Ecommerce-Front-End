@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import SingleUser from "../Components/SingleUser";
+import URL from '../Components/URL'
 
 class AllUsersContainer extends Component {
   state = {
@@ -11,7 +12,7 @@ class AllUsersContainer extends Component {
   }
 
   fetchAllUsers = () => {
-    fetch("https://shoppie-final-backend.herokuapp.com/users", {
+    fetch(`${URL}/users`, {
       headers: {
         Authorization: localStorage.token
       }

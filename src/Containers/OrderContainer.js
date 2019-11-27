@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AdminInfoBox from "../Components/admin-info-box/AdminInfoBox";
 import AdminSingleOrder from "../Components/admin-single-order/AdminSingleOrder";
 import AdminShowOrder from "../Components/admin-show-order/AdminShowOrder";
+import URL from '../Components/URL'
 
 class OrderContainer extends Component {
   state = {
@@ -13,7 +14,7 @@ class OrderContainer extends Component {
 
   componentDidMount() {
     // Fetch all orders
-    fetch("https://shoppie-final-backend.herokuapp.com/orders", {
+    fetch(`${URL}/orders`, {
       headers: {
         Authorization: localStorage.token
       }
@@ -30,7 +31,7 @@ class OrderContainer extends Component {
 
   // Grabs total earnings for all Sales
   fetchTotalEarnings = () => {
-    fetch("https://shoppie-final-backend.herokuapp.com/order_products", {
+    fetch(`${URL}/order_products`, {
       headers: {
         Authorization: localStorage.token
       }
@@ -56,7 +57,7 @@ class OrderContainer extends Component {
 
   // Figures out the customer with the most orders placed.
   fetchTopCustomer = () => {
-    fetch("https://shoppie-final-backend.herokuapp.com/orders", {
+    fetch(`${URL}/orders`, {
       headers: {
         Authorization: localStorage.token
       }
@@ -81,7 +82,7 @@ class OrderContainer extends Component {
             customers[a] > customers[b] ? a : b
           );
           // Make a fetch with the users id
-          fetch(`https://shoppie-final-backend.herokuapp.com/users/${topCustomer}`, {
+          fetch(`${URL}/users/${topCustomer}`, {
             headers: {
               Authorization: localStorage.token
             }
@@ -98,7 +99,7 @@ class OrderContainer extends Component {
 
   // Fetchs order details and grabs user id from AdminSingleOrder
   handleClick = orderId => {
-    fetch(`https://shoppie-final-backend.herokuapp.com/orders/${orderId}`, {
+    fetch(`${URL}/orders/${orderId}`, {
       headers: {
         Authorization: localStorage.token
       }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SingleProduct from "../Components/SingleProduct";
 import ProductFormContainer from "../Containers/ProductFormContainer";
 import ConfirmDelete from "../Components/ConfirmDelete";
+import URL from '../Components/URL'
 
 class InventoryContainer extends Component {
   state = {
@@ -68,7 +69,7 @@ class InventoryContainer extends Component {
 
   // Deletes a product
   deleteProduct = () => {
-    fetch(`https://shoppie-final-backend.herokuapp.com/products/${this.state.deleteProductId}`, {
+    fetch(`${URL}/products/${this.state.deleteProductId}`, {
       method: "DELETE"
     }).then(parsedData => {
       this.props.updateQuantity(parsedData);

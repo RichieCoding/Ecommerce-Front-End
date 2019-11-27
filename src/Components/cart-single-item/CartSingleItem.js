@@ -1,5 +1,6 @@
 import React from "react";
 import "./cart-single-item.styles.scss";
+import URL from '../../Components/URL';
 
 class CartSingleItem extends React.Component {
   state = {
@@ -10,7 +11,7 @@ class CartSingleItem extends React.Component {
 
   //Remove Product from cart
   handleRemove = () => {
-    fetch(`https://shoppie-final-backend.herokuapp.com/cart_items/${this.props.itemDetails.id}`, {
+    fetch(`${URL}/cart_items/${this.props.itemDetails.id}`, {
       method: "DELETE"
     })
     .then(this.props.renderCartPage())
@@ -19,7 +20,7 @@ class CartSingleItem extends React.Component {
 
   // Add count to quantity
   handleAdd = () => {
-    fetch(`https://shoppie-final-backend.herokuapp.com/cart_items/${this.props.itemDetails.id}`, {
+    fetch(`${URL}/cart_items/${this.props.itemDetails.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +42,7 @@ class CartSingleItem extends React.Component {
   };
 
   handleSubtract = () => {
-    fetch(`https://shoppie-final-backend.herokuapp.com/cart_items/${this.props.itemDetails.id}`, {
+    fetch(`${URL}/cart_items/${this.props.itemDetails.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

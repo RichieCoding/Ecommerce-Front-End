@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleUp } from "@fortawesome/free-solid-svg-icons";
 import { faArrowAltCircleDown } from "@fortawesome/free-solid-svg-icons";
 import ConfirmDelete from "../Components/ConfirmDelete";
+import URL from './URL'
 
 export class SingleProduct extends Component {
 
 
   handleUpClick = () => {
-    fetch(`https://shoppie-final-backend.herokuapp.com/products/${this.props.product.id}`, {
+    fetch(`${URL}/products/${this.props.product.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +27,7 @@ export class SingleProduct extends Component {
   };
 
   handleDownClick = () => {
-    fetch(`https://shoppie-final-backend.herokuapp.com/products/${this.props.product.id}`, {
+    fetch(`${URL}/products/${this.props.product.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

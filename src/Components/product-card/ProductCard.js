@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./product-card.styles.scss";
 import { Link } from "react-router-dom";
 
+import URL from '../URL'
+
 class ProductCard extends Component {
   state = {
     hover: false,
@@ -33,7 +35,7 @@ class ProductCard extends Component {
       console.log(findProduct);
     } else {
       console.log("not in cart");
-      fetch(`https://shoppie-final-backend.herokuapp.com/cart_items`, {
+      fetch(`${URL}/cart_items`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
