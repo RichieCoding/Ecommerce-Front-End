@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import UserForms from "../Components/UserForms";
+import URL from '../Components/URL'
 
 class SignUpContainer extends Component {
   handleSubmit = (e, userInfo) => {
     e.preventDefault();
-    fetch("https://shoppie-final-backend.herokuapp.com/users", {
+    fetch(`${URL}/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
