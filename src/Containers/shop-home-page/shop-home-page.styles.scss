@@ -8,5 +8,13 @@
       text-align: center;
       font-size: 2rem;
     }
+
+    .products {
+      // height: 100px;
+      margin: 35px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
   }
 }

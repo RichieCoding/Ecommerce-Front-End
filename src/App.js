@@ -11,7 +11,7 @@ import { Switch, Route } from "react-router-dom";
 import ShopProductPage from "./Containers/shop-product-page/ShopProductPage";
 import SingleProductPage from "./Containers/single-product-page/SingleProductPage";
 import HeaderMobile from "./Components/header-mobile/HeaderMobile";
-import URL from './Components/URL'
+import URL from "./Components/URL";
 
 class App extends Component {
   state = {
@@ -43,12 +43,12 @@ class App extends Component {
   handleMenuClose = () => {
     this.setState({
       menuOpen: false
-    })
-  }
+    });
+  };
 
   componentDidMount() {
     this.fetchProducts();
-    console.log(URL)
+    console.log(URL);
     // Fetch Current User Information
     if (localStorage.token) {
       fetch(`${URL}/profile`, {
@@ -63,7 +63,7 @@ class App extends Component {
 
             this.setState({
               currentUser: parsedData,
-              cartId: parsedData.cart.id,
+              cartId: parsedData.cart.id
             });
           }
         });
@@ -80,6 +80,13 @@ class App extends Component {
           productsLoaded: true
         });
       });
+  };
+
+  // Featured Products
+  featuredProducts = () => {
+    const product = [...this.state.products];
+    const featured = product.filter(product => product.featured === true);
+    return featured;
   };
 
   // Fetch Cart Items
@@ -124,7 +131,7 @@ class App extends Component {
           cart={this.state.cart} // Checks what is in cart
           setCartToZero={this.setCartToZero} // Sets cart to zero when you log out
           handleCartFetch={this.handleCartFetch} // Fetches cart from database
-          currentUser={this.state.currentUser} // Gets current user 
+          currentUser={this.state.currentUser} // Gets current user
           handleMenuOpen={this.handleMenuOpen} // Handles menu opening and closing for hamburger menu
           handleMenuClose={this.handleMenuClose} // Closes menu when you click on cart and logo
           isOpen={this.state.menuOpen} // Checks to see if the menu is open
@@ -140,7 +147,14 @@ class App extends Component {
           <Route
             exact
             path='/'
-            render={routerProps => <ShopHomePage cart={this.state.cart} />}
+            render={routerProps => (
+              <ShopHomePage
+                cartId={this.state.cartId}
+                cart={this.state.cart}
+                featured={this.featuredProducts()}
+                handleCartFetch={this.handleCartFetch}
+              />
+            )}
           />
           <Route
             path='/login'
