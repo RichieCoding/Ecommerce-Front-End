@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import URL from './URL'
 
 class ProductForm extends Component {
   state = {
@@ -30,7 +31,7 @@ class ProductForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     if (this.props.product !== undefined) {
-      fetch(`https://shoppie-final-backend.herokuapp.com/products/${this.props.product.id}`, {
+      fetch(`${URL}/products/${this.props.product.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +50,7 @@ class ProductForm extends Component {
     }
     else
       {
-      fetch('https://shoppie-final-backend.herokuapp.com/products', {
+      fetch(`${URL}/products`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
