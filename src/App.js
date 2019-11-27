@@ -11,6 +11,7 @@ import { Switch, Route } from "react-router-dom";
 import ShopProductPage from "./Containers/shop-product-page/ShopProductPage";
 import SingleProductPage from "./Containers/single-product-page/SingleProductPage";
 import HeaderMobile from "./Components/header-mobile/HeaderMobile";
+import URL from './Components/URL'
 
 class App extends Component {
   state = {
@@ -47,9 +48,10 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchProducts();
+    console.log(URL)
     // Fetch Current User Information
     if (localStorage.token) {
-      fetch("https://shoppie-final-backend.herokuapp.com/profile", {
+      fetch(`${URL}/profile`, {
         headers: {
           Authorization: localStorage.token
         }
@@ -70,7 +72,7 @@ class App extends Component {
 
   // Fetch all products
   fetchProducts = () => {
-    fetch("https://shoppie-final-backend.herokuapp.com/products")
+    fetch(`${URL}/products`)
       .then(resp => resp.json())
       .then(parsedData => {
         this.setState({
@@ -82,7 +84,7 @@ class App extends Component {
 
   // Fetch Cart Items
   fetchCartItems = id => {
-    fetch(`https://shoppie-final-backend.herokuapp.com/cart_items/${id}`, {
+    fetch(`${URL}/cart_items/${id}`, {
       headers: {
         Authorization: localStorage.token
       }
