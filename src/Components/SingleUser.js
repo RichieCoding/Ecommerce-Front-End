@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import UserFormContainer from '../Containers/user-form-container/UserFormContainer';
 
+import URL from './URL'
+
 class SingleUser extends Component {
   state = {
     clicked: false
@@ -14,7 +16,7 @@ class SingleUser extends Component {
 
   handleSubmit = (e, userInfo, id) => {
     e.preventDefault();
-    fetch(`https://shoppie-final-backend.herokuapp.com/users/${id}`, {
+    fetch(`${URL}/users/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
