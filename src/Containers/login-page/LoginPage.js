@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import "./login-page.styles.scss";
-import { Link } from "react-router-dom";
-import Header from "../../Components/header/Header";
 import SignUpForm from "../../Components/signup-form/SignUpForm";
+import URL from '../../Components/URL'
 
 class LoginPage extends Component {
   state = {
@@ -24,7 +23,7 @@ class LoginPage extends Component {
 
     // Checks if username and password inputs are empty
     if (username && password !== "") {
-      fetch("https://shoppie-final-backend.herokuapp.com/login", {
+      fetch(`${URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
