@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./single-product-page.styles.scss";
 import { Link } from "react-router-dom";
 import Spinner from "../../Components/Spinner/Spinner";
+import URL from '../../Components/URL'
 
 class SingleProductPage extends Component {
   state = {
@@ -13,7 +14,7 @@ class SingleProductPage extends Component {
 
   componentDidMount() {
     const productId = this.props.match.params.id;
-    fetch(`https://shoppie-final-backend.herokuapp.com/products/${productId}`)
+    fetch(`${URL}/products/${productId}`)
       .then(res => res.json())
       .then(parsedData => {
         console.log(parsedData);
@@ -45,7 +46,7 @@ class SingleProductPage extends Component {
     });
     if (!findProduct) {
       console.log("not in cart");
-      fetch(`https://shoppie-final-backend.herokuapp.com/cart_items`, {
+      fetch(`${URL}/cart_items`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
