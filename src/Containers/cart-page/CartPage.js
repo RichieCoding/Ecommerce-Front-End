@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./cart-page.styles.scss";
 import CartSingleItem from "../../Components/cart-single-item/CartSingleItem";
+import URL from '../../Components/URL'
 
 class CartPage extends Component {
   state = {
@@ -38,7 +39,7 @@ class CartPage extends Component {
 
   componentDidMount() {
     if (localStorage.token) {
-      fetch("https://shoppie-final-backend.herokuapp.com/profile", {
+      fetch(`${URL}/profile`, {
         headers: {
           Authorization: localStorage.token
         }
@@ -53,7 +54,7 @@ class CartPage extends Component {
   }
 
   fetchCart = id => {
-    fetch(`https://shoppie-final-backend.herokuapp.com/cart_items/${id}`, {
+    fetch(`${URL}/cart_items/${id}`, {
       headers: {
         Authorization: localStorage.token
       }
@@ -76,7 +77,7 @@ class CartPage extends Component {
   handleCheckout = (e) => {
     e.preventDefault()
     if (this.state.cartTotal !== 0) {
-      fetch("https://shoppie-final-backend.herokuapp.com/checkout", {
+      fetch(`${URL}/checkout`, {
         method: "POST",
         headers: {
           Authorization: localStorage.token
