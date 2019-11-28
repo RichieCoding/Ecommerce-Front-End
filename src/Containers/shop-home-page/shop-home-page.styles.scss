@@ -2,6 +2,7 @@
 
   .featured-items {
     width: 90%;
+    max-width: 1500px;
     margin: 0 auto;
 
     h3 {
@@ -11,10 +12,24 @@
 
     .products {
       // height: 100px;
-      margin: 35px 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      margin: 35px auto;
+      width: 100%;
+      display: grid;
+      grid-gap: 45px;
+      grid-template-columns: 1fr 1fr 1fr;
+      // background: red;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .shop-home-page {
+    .featured-items {
+      .products {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
   }
 }
