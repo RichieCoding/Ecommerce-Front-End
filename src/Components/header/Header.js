@@ -26,6 +26,15 @@ class Header extends Component {
   render() {
     return (
       <nav>
+        <div className='hamburger-menu'>
+            <HamburgerMenu
+              isOpen={this.props.isOpen}
+              menuClicked={this.props.handleMenuOpen}
+              width={25}
+              height={18}
+              color={"black"}
+            />
+          </div>
         <h3 className='logo'>
           <Link to='/' onClick={this.props.handleMenuClose}>Shoppie</Link>
         </h3>
@@ -51,20 +60,11 @@ class Header extends Component {
             </li>
           ) : null}
         </ul>
-        <ul className='menu-cart'>
-          <li className='cart-text'>
-            <Link to='/cart' onClick={this.props.handleMenuClose}>{`Cart: ${this.addTotal()}`}</Link>{" "}
-          </li>
-          <div className='hamburger-menu'>
-            <HamburgerMenu
-              isOpen={this.props.isOpen}
-              menuClicked={this.props.handleMenuOpen}
-              width={25}
-              height={18}
-              color={"black"}
-            />
+        <div className='menu-cart'>
+          <div className='cart-text'>
+            <Link to='/cart' onClick={this.props.handleMenuClose}><span>Cart: </span>{this.addTotal()}</Link>
           </div>
-        </ul>
+        </div>
       </nav>
     );
   }
