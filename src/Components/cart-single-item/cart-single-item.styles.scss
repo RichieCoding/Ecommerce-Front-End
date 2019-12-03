@@ -4,6 +4,14 @@
   border-top: 0.6px solid rgb(197, 197, 197);
   width: 100%;
 
+  a {
+    color: black;
+
+    &:visited {
+      color: black;
+    }
+  }
+
   .product-info {
     width: 100%;
 

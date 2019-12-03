@@ -1,5 +1,6 @@
 import React from "react";
 import "./cart-single-item.styles.scss";
+import { Link } from 'react-router-dom';
 import URL from '../../Components/URL';
 
 class CartSingleItem extends React.Component {
@@ -68,15 +69,15 @@ class CartSingleItem extends React.Component {
   };
 
   render() {
-    const { name, color, imageUrl, size } = this.props.itemDetails.products;
+    const { name, color, imageUrl, size, id } = this.props.itemDetails.products;
     return (
       <div className='cart-single-item'>
         <div className='product-image'>
-          <img src={imageUrl} alt='product' style={{ width: "160px" }} />
+          <Link to={`/shop/${id}`}><img src={imageUrl} alt='product' style={{ width: "160px" }} /></Link>
         </div>
         <div className='product-info'>
           <div className='product-name product-text'>
-            <p>{name}</p>
+            <Link to={`/shop/${id}`}><p>{name}</p></Link>
             <p onClick={this.handleRemove} className='delete-cart-item'>X</p>
           </div>
           <div className='product-size product-text'>
