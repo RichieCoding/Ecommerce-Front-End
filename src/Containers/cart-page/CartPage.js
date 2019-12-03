@@ -5,11 +5,8 @@ import URL from '../../Components/URL'
 
 class CartPage extends Component {
   state = {
-    currentCart: {
-      products: []
-    },
     currentCart1: [],
-    cartTotal: "",
+    cartTotal: 0,
     checkedOut: false
   };
 
