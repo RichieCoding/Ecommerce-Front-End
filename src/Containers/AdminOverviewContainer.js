@@ -7,7 +7,6 @@ import SettingsContainer from './settings-page/SettingsContainer';
 
 class AdminOverviewContainer extends Component {
   state = {
-    // Default Component is Order
     renderClick: "Orders",
     darkMode: false
   };

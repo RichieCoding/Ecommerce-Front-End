@@ -1,6 +1,5 @@
 import React from "react";
 import "./shop-home-page.styles.scss";
-// import { Link } from "react-router-dom";
 import { Banner } from "../../Components/banner/Banner";
 import ProductCard from "../../Components/product-card/ProductCard";
 
