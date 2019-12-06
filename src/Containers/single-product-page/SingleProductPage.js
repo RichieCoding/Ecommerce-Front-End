@@ -65,8 +65,8 @@ const SingleProductPage = ({ match, cart, cartId, handleCartFetch }) => {
     }
   };
 
-  if (loading) return <Spinner />;
   const { name, color, imageUrl, price, description, size } = product;
+  if (loading) return <Spinner />;
   return (
     <>
       <div className='back-btn-container'>
