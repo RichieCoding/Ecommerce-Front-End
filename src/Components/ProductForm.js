@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import URL from './URL'
+import URL from "./URL";
 
 class ProductForm extends Component {
   state = {
@@ -7,7 +7,7 @@ class ProductForm extends Component {
     color: "",
     size: "",
     quantity: "",
-    category: '',
+    category: "",
     price: "",
     varientId: "",
     imageUrl: "",
@@ -15,6 +15,7 @@ class ProductForm extends Component {
   };
 
   componentDidMount() {
+    // Checks to see if form has any inputs passed in as props
     if (this.props.product !== undefined) {
       this.setState({
         ...this.props.product
@@ -28,6 +29,7 @@ class ProductForm extends Component {
     });
   };
 
+  // Handles submit for when the form is adding a new product or editing a current product
   handleSubmit = e => {
     e.preventDefault();
     if (this.props.product !== undefined) {
@@ -43,37 +45,29 @@ class ProductForm extends Component {
         })
       })
         .then(resp => resp.json())
-      .then(parsedData => {
-        this.props.updateQuantity(parsedData)
-      })
-      this.props.handleAddClick()
-    }
-    else
-      {
+        .then(parsedData => {
+          this.props.updateQuantity(parsedData);
+        });
+      this.props.handleAddClick();
+    } else {
       fetch(`${URL}/products`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
+          Accept: "application/json",
           Authorization: localStorage.token
         },
         body: JSON.stringify({
           ...this.state
         })
       })
-      .then(resp => resp.json())
-      .then(parsedData => {
-        this.props.updateQuantity(parsedData)
-      })
-      this.props.handleAddClick()
-      }
+        .then(resp => resp.json())
+        .then(parsedData => {
+          this.props.updateQuantity(parsedData);
+        });
+      this.props.handleAddClick();
+    }
   };
-
-  // updateQuantity={this.props.updateQuantity}
-  // })
-  //   .then(resp => resp.json())
-  //   .then(this.props.history.push("/login"));
-  // };
 
   render() {
     const {
@@ -90,7 +84,7 @@ class ProductForm extends Component {
     return (
       <div className='product-form-wrapper'>
         <form onSubmit={this.handleSubmit}>
-        <label htmlFor='category'>Category:</label>
+          <label htmlFor='category'>Category:</label>
           <br></br>
           <input
             onChange={this.handleChange}
