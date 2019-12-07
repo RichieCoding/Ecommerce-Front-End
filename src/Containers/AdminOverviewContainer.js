@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import OrderContainer from "./OrderContainer";
-import InventoryContainer from "./InventoryContainer";
+import InventoryContainer from "./InventoryContainer/InventoryContainer";
 import AdminMenu from "../Components/AdminMenu";
 import AllUsersContainer from "./AllUsersContainer";
 import SettingsContainer from './settings-page/SettingsContainer';
