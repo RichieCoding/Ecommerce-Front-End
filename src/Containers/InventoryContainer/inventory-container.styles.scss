@@ -1,0 +1,26 @@
+.inventory-container {
+  margin: 0 3em 30px;
+  background: rgb(231, 231, 233);
+  overflow: scroll;
+  position: relative;
+}
+
+.inventory-header {
+  color: white;
+  background: rgba(0, 0, 0, 0.80);
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr ;
+  padding: 25px;
+  user-select: none;
+}
+
+#add-product-btn {
+  height: 40px;
+  width: 130px;
+  font-size: 1em;
+}
+
+#add-product-btn:hover {
+  transform: scale(1.04);
+  cursor: pointer;
+}
