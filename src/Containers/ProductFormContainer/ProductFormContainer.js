@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import ProductForm from "../Components/ProductForm";
+import ProductForm from "../../Components/ProductForm";
+import './product-form-container.styles.scss';
 
 const ProductFormContainer = ({
   title,
