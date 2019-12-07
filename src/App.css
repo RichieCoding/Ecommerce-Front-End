@@ -107,32 +107,6 @@ a {
     Inventory Container
 *************************/
 
-.inventory-container {
-  margin: 0 3em 30px;
-  background: rgb(231, 231, 233);
-  overflow: scroll;
-}
-
-.inventory-header {
-  color: white;
-  background: rgba(0, 0, 0, 0.80);
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr ;
-  padding: 25px;
-  user-select: none;
-}
-
-#add-product-btn {
-  height: 40px;
-  width: 130px;
-  font-size: 1em;
-}
-
-#add-product-btn:hover {
-  transform: scale(1.04);
-  cursor: pointer;
-}
-
 
 
 /************************* 
@@ -232,7 +206,7 @@ a {
   border-radius: 3.5px;
   width: 40%;
   position: fixed;
-  top: 25%;
+  top: 30%;
   left: 30%;
   width: 50%;
   height: 60%;
