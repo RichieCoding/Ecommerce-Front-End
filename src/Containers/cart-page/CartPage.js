@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import "./cart-page.styles.scss";
-import CartSingleItem from "../../Components/cart-single-item/CartSingleItem";
-import URL from '../../Components/URL'
+import React, { Component } from 'react';
+import './cart-page.styles.scss';
+import CartSingleItem from '../../Components/cart-single-item/CartSingleItem';
+import URL from '../../Components/URL';
 
 class CartPage extends Component {
   state = {
@@ -12,9 +12,9 @@ class CartPage extends Component {
 
   cartTotal = () => {
     let total = 0;
-    this.state.currentCart1.map(cartProduct => {
-      total += cartProduct.products.price * cartProduct.count;
-    });
+    this.state.currentCart1.map(
+      cartProduct => (total += cartProduct.products.price * cartProduct.count)
+    );
     this.setState({
       cartTotal: total
     });
@@ -71,11 +71,11 @@ class CartPage extends Component {
     this.componentDidMount();
   };
 
-  handleCheckout = (e) => {
-    e.preventDefault()
+  handleCheckout = e => {
+    e.preventDefault();
     if (this.state.cartTotal !== 0) {
       fetch(`${URL}/checkout`, {
-        method: "POST",
+        method: 'POST',
         headers: {
           Authorization: localStorage.token
         }
@@ -123,7 +123,11 @@ class CartPage extends Component {
               <p>${this.state.cartTotal}</p>
             </div>
             <div className='checkout'>
-              <input type='submit' onClick={this.handleCheckout} value='Checkout'/>
+              <input
+                type='submit'
+                onClick={this.handleCheckout}
+                value='Checkout'
+              />
             </div>
           </div>
         </div>
