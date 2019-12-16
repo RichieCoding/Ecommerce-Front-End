@@ -3,17 +3,15 @@ import "./admin-show-order.styles.scss";
 import OrderSingleProduct from "../orders-single-product/OrderSingleProduct";
 
 class AdminShowOrder extends Component {
-
   totalPrice = () => {
     let totalPrice = 0;
     this.props.orderDetails.products.forEach(product => {
-      totalPrice += product.price
-    })
-    return totalPrice
-  }
+      totalPrice += product.price;
+    });
+    return totalPrice;
+  };
 
   render() {
-    // console.log(this.props.orderDetails)
     const renderProducts = this.props.orderDetails.products.map(product => {
       return (
         <OrderSingleProduct
@@ -26,9 +24,12 @@ class AdminShowOrder extends Component {
       );
     });
     const { id, date, time, user } = this.props.orderDetails;
-    console.log(this.totalPrice())
     return (
-      <div className={this.props.customer ? `customer-show-order` : 'admin-show-order'}>
+      <div
+        className={
+          this.props.customer ? `customer-show-order` : "admin-show-order"
+        }
+      >
         <header>
           <div className='order-date'>
             <h3>{`Order #${id}`}</h3>
@@ -68,11 +69,5 @@ class AdminShowOrder extends Component {
     );
   }
 }
-
-// const AdminShowOrder = () => {
-//   return (
-//   <div className='admin-show-order'></div>
-//  )
-// }
 
 export default AdminShowOrder;
