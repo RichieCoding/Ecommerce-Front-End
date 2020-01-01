@@ -1,17 +1,22 @@
 import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
+
 import "./App.css";
+
 import LoginPage from "./Containers/login-page/LoginPage";
 import ProfilePage from "./Components/ProfilePage";
 import SignUpPage from "./Containers/SignUpContainer";
-import AdminOverviewContainer from "./Containers/AdminOverviewContainer";
 import ShopHomePage from "./Containers/shop-home-page/ShopHomePage";
 import Header from "./Components/header/Header";
 import CartPage from "./Containers/cart-page/CartPage";
-import { Switch, Route } from "react-router-dom";
 import ShopProductPage from "./Containers/shop-product-page/ShopProductPage";
 import SingleProductPage from "./Containers/single-product-page/SingleProductPage";
 import HeaderMobile from "./Components/header-mobile/HeaderMobile";
 import URL from "./Components/URL";
+
+import { setCurrentUser } from "./redux/user/user.actions";
+import { fetchCartItems } from "./redux/cart/cart.actions";
 
 class App extends Component {
   state = {
@@ -48,7 +53,7 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchProducts();
-    console.log(URL);
+
     // Fetch Current User Information
     if (localStorage.token) {
       fetch(`${URL}/profile`, {
@@ -74,12 +79,12 @@ class App extends Component {
   fetchProducts = () => {
     fetch(`${URL}/products`)
       .then(resp => resp.json())
-      .then(parsedData => {
+      .then(products => {
         this.setState({
-          products: parsedData,
+          products: products,
           productsLoaded: true
-        });
-      });
+        })
+      })
   };
 
   // Featured Products
@@ -131,7 +136,6 @@ class App extends Component {
           cart={this.state.cart} // Checks what is in cart
           setCartToZero={this.setCartToZero} // Sets cart to zero when you log out
           handleCartFetch={this.handleCartFetch} // Fetches cart from database
-          currentUser={this.state.currentUser} // Gets current user
           handleMenuOpen={this.handleMenuOpen} // Handles menu opening and closing for hamburger menu
           handleMenuClose={this.handleMenuClose} // Closes menu when you click on cart and logo
           isOpen={this.state.menuOpen} // Checks to see if the menu is open
@@ -226,4 +230,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser
+});
+
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
