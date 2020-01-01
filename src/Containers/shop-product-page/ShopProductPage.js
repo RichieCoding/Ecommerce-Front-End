@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./shop-product-page.styles.scss";
 import ProductCard from "../../Components/product-card/ProductCard";
 import Spinner from "../../Components/Spinner/Spinner";
@@ -7,6 +7,7 @@ const ShopProductPage = (props) => {
   const renderProductCards = props.products.map(product => {
     return (
       <ProductCard
+        key={product.id}
         cart={props.cart}
         cartId={props.cartId}
         product={product}
