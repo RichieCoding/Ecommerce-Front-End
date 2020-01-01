@@ -1,7 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './header.styles.scss';
-import HamburgerMenu from 'react-hamburger-menu';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./header.styles.scss";
+import HamburgerMenu from "react-hamburger-menu";
+import { connect } from "react-redux";
 
 const Header = props => {
   const handleClick = () => {
@@ -26,7 +27,7 @@ const Header = props => {
           menuClicked={props.handleMenuOpen}
           width={25}
           height={18}
-          color={'black'}
+          color={"black"}
         />
       </div>
       <h3 className='logo'>
@@ -52,7 +53,7 @@ const Header = props => {
         )}
         {localStorage.token ? (
           <li onClick={handleClick}>
-            <Link to='/'>Log out</Link>
+            <Link to='/'>{`Log Out ${props.currentUser}`}</Link>
           </li>
         ) : null}
       </ul>
@@ -60,7 +61,7 @@ const Header = props => {
         <div className='cart-text'>
           <Link to='/cart' onClick={props.handleMenuClose}>
             <span>Cart: </span>
-            {addTotal()}
+            {props.cartItems.length}
           </Link>
         </div>
       </div>
@@ -68,4 +69,9 @@ const Header = props => {
   );
 };
 
-export default Header;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser,
+  cartItems: state.cart.cartItems
+});
+
+export default connect(mapStateToProps)(Header);
