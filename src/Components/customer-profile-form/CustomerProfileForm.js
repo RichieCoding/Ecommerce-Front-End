@@ -11,7 +11,6 @@ class CustomerProfileForm extends Component {
     address: "",
     city: "",
     state: "",
-    state: "",
     zipcode: "",
     username: "",
     password: "",
