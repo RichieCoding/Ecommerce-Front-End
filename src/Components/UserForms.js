@@ -9,7 +9,6 @@ class UserForms extends Component {
     address: "",
     city: "",
     state: "",
-    state: "",
     zipcode: "",
     username: "",
     // password: ""
