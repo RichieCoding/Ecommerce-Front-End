@@ -96,6 +96,7 @@ class CartPage extends Component {
       .map(item => {
         return (
           <CartSingleItem
+            key={item.id}
             cartTotalAdd={this.cartTotalAdd}
             cartTotalSubtract={this.cartTotalSubtract}
             cartTotal={this.cartTotal}
