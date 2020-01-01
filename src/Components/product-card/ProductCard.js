@@ -1,6 +1,10 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+
 import "./product-card.styles.scss";
 import { Link } from "react-router-dom";
+
+import { addToCart } from '../../redux/cart/cart.actions'
 
 import URL from '../URL'
 
@@ -16,7 +20,7 @@ class ProductCard extends Component {
       this.setState({
         status: "SOLD OUT"
       });
-    } else if (this.props.cart.length !== 0) {
+    } else if (this.props.cartItems.length !== 0) {
       for (let i = 0; i < this.props.cart.length; i++) {
         if (this.props.cart[i].product_id === this.props.product.id) {
           this.setState({
@@ -28,7 +32,7 @@ class ProductCard extends Component {
   }
 
   addToCart = () => {
-    const findProduct = this.props.cart.find(cartItem => {
+    const findProduct = this.props.cartItems.find(cartItem => {
       return cartItem.product_id === this.props.product.id;
     });
     if (findProduct) {
@@ -52,6 +56,7 @@ class ProductCard extends Component {
           this.setState({
             status: "Added"
           });
+          this.props.addToCart(this.props.product)
           this.props.handleCartFetch();
         });
     }
@@ -123,4 +128,12 @@ class ProductCard extends Component {
   }
 }
 
-export default ProductCard;
+const mapStateToProps = (state) => ({
+  cartItems: state.cart.cartItems
+})
+
+const mapDispatchToProps = dispatch => ({
+  addToCart: item => dispatch(addToCart(item))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);
