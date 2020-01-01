@@ -23,7 +23,7 @@ class AllUsersContainer extends Component {
           return a.first_name.localeCompare(b.first_name)
         })
         this.setState({
-          allUsers: parsedUser
+          allUsers: sortedUsers
         });
       });
   };
